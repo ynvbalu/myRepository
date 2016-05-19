@@ -1,0 +1,10 @@
+The include/exclude filter settings in the Preferences window apply to class name/package patterns for all projects. To control the files at the folder/path level you must set it per-project.
+
+Right-click the project
+Select Coverage As | Coverage Configurations...
+Select the project under the Junit subtree
+Select the Coverage tab on the right
+Uncheck the folder containing your tests, e.g., src/test/java
+Click Apply
+Click Close (or Coverage to run immediately)
+These settings will apply every time you run the coverage in the future without having to open the configuration window.
