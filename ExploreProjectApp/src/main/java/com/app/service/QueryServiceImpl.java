@@ -94,13 +94,7 @@ public class QueryServiceImpl implements QueryService {
       throws IOException {
     List<String> lines = readAllLines(get(fileName));
 
-    Path linesFound = get(LINES_FOUND);
-    write(linesFound, lines, Charset.forName(UTF_8));
-
     List<String> sqls = addQueriesAndBindingValuesToTheCollection(lines, readFromThatLine);
-
-    Path file = get(QUERY_VAL);
-    write(file, sqls, Charset.forName(UTF_8));
 
     List<String> finalOutput = matchQueriesWithCorrespondingBindingValues(sqls);
 
