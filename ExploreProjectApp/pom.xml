@@ -48,21 +48,25 @@
 		<dependency>
 		  <groupId>org.springframework.boot</groupId>
 		  <artifactId>spring-boot-starter-jersey</artifactId>
+      <scope>provided</scope>
 		</dependency>
 		
     <!-- custome libraries -->
      <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
+      <scope>provided</scope>
     </dependency>
 	</dependencies>
 	
