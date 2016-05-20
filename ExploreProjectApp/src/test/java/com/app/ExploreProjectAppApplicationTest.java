@@ -18,61 +18,58 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DirtiesContext
 public class ExploreProjectAppApplicationTest {
 
-  private static final String HTTP_LOCALHOST = "http://localhost:";
+  private static final String URL = "http://localhost:";
   @LocalServerPort
   private int port;
 
   @Test
   public void testJspWithEl() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port, String.class);
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port, String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test
   public void testOne() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port + "/queries",
-        String.class);
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port + "/queries", String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(entity.getBody()).contains("Query Template");
   }
 
   @Test
   public void testTwo() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port +
-        "/log/TEST_2016-04-29_09_08", String.class);
-    assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-  }
-
-  @Test
-  public void testThree() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port + "/qt",
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port + "/log/TEST_2016-04-29_09_08",
         String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test
+  public void testThree() throws Exception {
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port + "/qt", String.class);
+    assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+  }
+
+  @Test
   public void testFour() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port +
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port +
         "/startup/TEST_2016-04-29_09_08", String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test
   public void testFive() throws Exception {
-    new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port + "/foo", String.class);
+    new TestRestTemplate().getForEntity(URL + this.port + "/foo", String.class);
   }
 
   @Test
   public void testSix() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port + "/test",
-        String.class);
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port + "/test", String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test
   public void testSeven() throws Exception {
-    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(HTTP_LOCALHOST + this.port +
-        "/log/TEST_2016-05-02_11_29", String.class);
+    ResponseEntity<String> entity = new TestRestTemplate().getForEntity(URL + this.port + "/log/TEST_2016-05-02_11_29",
+        String.class);
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
