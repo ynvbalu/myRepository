@@ -201,20 +201,8 @@ public class QueryServiceImpl implements QueryService {
    */
   private static void writeToQueryFile(Set<String> queriesOnlyList) throws IOException {
     
-    List<String> readAllLines = readAllLines(get(QUERIESFILE));
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(QUERIESFILE, APPEND_FLAG))) {
-
-      for (String line : queriesOnlyList) {
-
-        if (!readAllLines.contains(line)) {
-          writer.write(line);
-          writer.newLine();
-        }
-      }
-    }
-    List<String> sortedLines = readAllLines(get(QUERIESFILE)).stream().sorted().collect(Collectors.toList());
     Path sortedFile = get(QUERIESFILE);
-    write(sortedFile, sortedLines, Charset.forName(UTF_8));
+    write(sortedFile, queriesOnlyList, Charset.forName(UTF_8));
   }
 
   /**
