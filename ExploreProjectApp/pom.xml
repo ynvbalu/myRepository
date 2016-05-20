@@ -49,8 +49,8 @@
 		  <groupId>org.springframework.boot</groupId>
 		  <artifactId>spring-boot-starter-jersey</artifactId>
 		</dependency>
-		<!-- custome libraries -->
-    
+		
+    <!-- custome libraries -->
      <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>

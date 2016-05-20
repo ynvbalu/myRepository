@@ -1,7 +1,7 @@
 package com.app.service;
 
-import static com.app.constants.Chars.LEFT_BRACKET;
-import static com.app.constants.Chars.RIGHT_BRACKET;
+import static com.app.constants.Chars.L_BRACKT;
+import static com.app.constants.Chars.R_BRACKT;
 import static com.app.constants.Constants.*;
 import static java.nio.file.Files.readAllLines;
 import static java.nio.file.Files.write;
@@ -27,15 +27,15 @@ import com.google.gson.*;
 @Service
 public class QueryServiceImpl implements QueryService {
 
-  @Bean(name = "myProperties")
+  @Bean(name = "props")
   public static PropertiesFactoryBean mapper() {
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
-    bean.setLocation(new ClassPathResource(CODE_DESC_PROPERTIES));
+    bean.setLocation(new ClassPathResource(CODE_DESC));
 
     return bean;
   }
 
-  @Resource(name = "myProperties")
+  @Resource(name = "props")
   private Map<String, String> props;
 
   /**
@@ -47,9 +47,9 @@ public class QueryServiceImpl implements QueryService {
   public List<String> getStartUpQueries(String fileName) throws IOException {
     List<String> list = new ArrayList<>();
     List<String> lines = readAllLines(get(fileName)).stream().filter(line -> contains(line,
-        DEBUG_ABSTRACT_ENTITY_PERSISTER) && !contains(line, STATIC_SQL_FOR_ENTITY)).collect(Collectors.toList());
+        SEARCH_START_1) && !contains(line, SEARCH_START_2)).collect(Collectors.toList());
 
-    lines.forEach(line -> list.add(getQuery(line, VERSION_SELECT, SNAPSHOT_SELECT, INSERT_0, UPDATE_0, DELETE_0)));
+    lines.forEach(line -> list.add(getQuery(line, V_SELECT, S_SELECT, INSERT_Q, UPDATE_Q, DELETE_Q)));
 
     return list;
   }
@@ -94,12 +94,12 @@ public class QueryServiceImpl implements QueryService {
       throws IOException {
     List<String> lines = readAllLines(get(fileName));
 
-    Path linesFound = get(LINES_FOUND_FILE);
+    Path linesFound = get(LINES_FOUND);
     write(linesFound, lines, Charset.forName(UTF_8));
 
     List<String> sqls = addQueriesAndBindingValuesToTheCollection(lines, readFromThatLine);
 
-    Path file = get(QUERY_VALUES_TXT);
+    Path file = get(QUERY_VAL);
     write(file, sqls, Charset.forName(UTF_8));
 
     List<String> finalOutput = matchQueriesWithCorrespondingBindingValues(sqls);
@@ -109,7 +109,7 @@ public class QueryServiceImpl implements QueryService {
 
   @Override
   public List<String> getQueryTemplates() throws IOException {
-    List<String> finalOutput = readAllLines(get(QUERIESFILE));
+    List<String> finalOutput = readAllLines(get(QUERIES_FILE));
 
     return finalOutput;
   }
@@ -123,7 +123,7 @@ public class QueryServiceImpl implements QueryService {
     List<String> output = new ArrayList<>();
     int size = queryAndValues.size();
     Set<String> queriesOnlyList = new HashSet<>();
-    String descAndCode = props.get("DESC_CODE_LIST");
+    String descAndCode = props.get(DESC_CODE_LIST);
     String[] descList = split(descAndCode, ",");
     JsonParser parser = new JsonParser();
     GsonBuilder gsonBuilder = new GsonBuilder();
@@ -139,7 +139,7 @@ public class QueryServiceImpl implements QueryService {
       }
 
       try {
-        while (indexOf(query, QUESTION_MARK_) != INDEX_NOT_FOUND && startsWith) {
+        while (indexOf(query, Q_MARK) != INDEX_NOT_FOUND && startsWith) {
 
           if (lineNo >= size - 1) {
             break;
@@ -148,10 +148,10 @@ public class QueryServiceImpl implements QueryService {
 
           if (startsWith(value, VALUE)) {
             value = formattingTheValue(parser, gsonBuilder, value);
-            query = query.replaceFirst(join(DOUBLE_LEFT_QUOTE, QUESTION_MARK_), value);
+            query = query.replaceFirst(join(SLASH_, Q_MARK), value);
             lineNo++;
           } else {
-            query = query.replaceFirst(join(DOUBLE_LEFT_QUOTE, QUESTION_MARK_), NOVALUE);
+            query = query.replaceFirst(join(SLASH_, Q_MARK), NO_VAL);
           }
         }
 
@@ -183,12 +183,12 @@ public class QueryServiceImpl implements QueryService {
   private String formattingTheValue(JsonParser parser, GsonBuilder gsonBuilder, String value) {
     value = substring(value, length(VALUE), length(value));
 
-    if (!isNumeric(value) && !startsWith(value, SINGLE_QUOTE)) {
-      value = join(SINGLE_QUOTE, value, SINGLE_QUOTE);
+    if (!isNumeric(value) && !startsWith(value, S_QUOTE)) {
+      value = join(S_QUOTE, value, S_QUOTE);
     }
 
     if (!CollectionUtils.isEmpty(props) && props.containsKey(value)) {
-      value = join(value, FONT_COLOR_BLACK_FONT, COMMENT_START, props.get(value), COMMENT_END, FONT_END);
+      value = join(value, BLACK_FONT, C_START, props.get(value), C_END, T_END);
     }
 
     value = formatingTheJson(parser, gsonBuilder, value);
@@ -201,8 +201,7 @@ public class QueryServiceImpl implements QueryService {
    * @throws IOException exception
    */
   private static void writeToQueryFile(Set<String> queriesOnlyList) throws IOException {
-
-    Path sortedFile = get(QUERIESFILE);
+    Path sortedFile = get(QUERIES_FILE);
     write(sortedFile, queriesOnlyList, Charset.forName(UTF_8));
   }
 
@@ -214,10 +213,10 @@ public class QueryServiceImpl implements QueryService {
    * @return string
    */
   private static String replacingTheQuery(List<String> queryAndValues, int lineNo, String query, boolean startsWith) {
-    if (indexOf(query, DYNAMIC_VALUE) != INDEX_NOT_FOUND && startsWith) {
+    if (indexOf(query, DYN_VAL) != INDEX_NOT_FOUND && startsWith) {
       String replaceValue = queryAndValues.get(lineNo + 5);
-      replaceValue = join(FONT_COLOR_RED, substring(replaceValue, length(VALUE), replaceValue.length()), FONT_END);
-      query = replace(query, DYNAMIC_VALUE, replaceValue);
+      replaceValue = join(RED_FONT, substring(replaceValue, length(VALUE), replaceValue.length()), T_END);
+      query = replace(query, DYN_VAL, replaceValue);
     }
     return query;
   }
@@ -229,17 +228,17 @@ public class QueryServiceImpl implements QueryService {
    * @return value
    */
   private static String formatingTheJson(JsonParser parser, GsonBuilder gsonBuilder, String value) {
-    if (startsWith(value, join(SINGLE_QUOTE, LEFT_BRACKET_1))) {
-      value = substringAfter(value, SINGLE_QUOTE);
-      value = removeEnd(value, SINGLE_QUOTE);
-      value = replace(value, join(DOUBLE_QUOTE, LEFT_BRACKET_1), LEFT_BRACKET_1);
-      value = replace(value, join(RIGHT_BRACKET_1, DOUBLE_QUOTE), RIGHT_BRACKET_1);
-      value = replace(value, join(DOUBLE_LEFT_QUOTE, DOUBLE_QUOTE), SINGLE_QUOTE);
-      value = replace(value, DOUBLE_QUOTE, SINGLE_QUOTE);
+    if (startsWith(value, join(S_QUOTE, L_BRACKET))) {
+      value = substringAfter(value, S_QUOTE);
+      value = removeEnd(value, S_QUOTE);
+      value = replace(value, join(D_QUOTE, L_BRACKET), L_BRACKET);
+      value = replace(value, join(R_BRACKET, D_QUOTE), R_BRACKET);
+      value = replace(value, join(SLASH_, D_QUOTE), S_QUOTE);
+      value = replace(value, D_QUOTE, S_QUOTE);
       value = toPrettyFormat(parser, gsonBuilder, value);
-      value = join(FONT_COLOR_BLUE_FONT, value, FONT_END);
+      value = join(BLUE_FONT, value, T_END);
     } else {
-      value = join(FONT_COLOR_RED, value, FONT_END);
+      value = join(RED_FONT, value, T_END);
     }
 
     return value;
@@ -252,14 +251,14 @@ public class QueryServiceImpl implements QueryService {
    * @param query query
    */
   private static void addingOutputToList(List<String> output, JsonParser parser, GsonBuilder builder, String query) {
-    if (startsWith(query, OUTPUT)) {
-      String outStr = substringAfter(query, OUTPUT);
-      outStr = replace(outStr, join(DOUBLE_LEFT_QUOTE, DOUBLE_QUOTE), SINGLE_QUOTE);
-      outStr = replace(outStr, DOUBLE_QUOTE, SINGLE_QUOTE);
-      outStr = replace(outStr, join(LEFT_BRACKET.toString(), SINGLE_QUOTE), LEFT_BRACKET.toString());
-      outStr = replace(outStr, join(SINGLE_QUOTE, RIGHT_BRACKET.toString()), RIGHT_BRACKET.toString());
+    if (startsWith(query, OUT)) {
+      String outStr = substringAfter(query, OUT);
+      outStr = replace(outStr, join(SLASH_, D_QUOTE), S_QUOTE);
+      outStr = replace(outStr, D_QUOTE, S_QUOTE);
+      outStr = replace(outStr, join(L_BRACKT.toString(), S_QUOTE), L_BRACKT.toString());
+      outStr = replace(outStr, join(S_QUOTE, R_BRACKT.toString()), R_BRACKT.toString());
       outStr = toPrettyFormat(parser, builder, outStr);
-      outStr = join(FONT_COLOR_BLUE_FONT, outStr, FONT_END);
+      outStr = join(BLUE_FONT, outStr, T_END);
       output.add(outStr);
     }
   }
@@ -293,13 +292,13 @@ public class QueryServiceImpl implements QueryService {
         line = substringAfter(line, "RuleResult JSON:");
         flag = true;
       }
-      if (!startsWith(line, RIGHT_BRACKET_1) && flag) {
+      if (!startsWith(line, R_BRACKET) && flag) {
         sb.append(line);
       }
-      if (startsWith(line, RIGHT_BRACKET_1) && flag) {
+      if (startsWith(line, R_BRACKET) && flag) {
         // System.out.println(line);
         sb.append(line);
-        sqls.add(join(OUTPUT, sb.toString()));
+        sqls.add(join(OUT, sb.toString()));
         sb.delete(0, sb.length());
         flag = false;
       }
@@ -335,7 +334,7 @@ public class QueryServiceImpl implements QueryService {
     if (contains(line, EXECUTING_SQL_QUERY) || contains(line, CALLING_STORED_PROCEDURE) || contains(line,
         EXECUTING_PREPARED_SQL_STATEMENT)) {
       query = extractQuery(line);
-      query = replace(query, DOUBLE_QUOTE, EMPTY);
+      query = replace(query, D_QUOTE, EMPTY);
     } else if (contains(line, DEBUG_SQL) && contains(line, SELECT_FROM_LOWER)) {
       query = substring(line, indexOf(line, HYPEN) + length(HYPEN));
       query = specialCaseTwo(query);
@@ -389,8 +388,8 @@ public class QueryServiceImpl implements QueryService {
    * @return query
    */
   private static String extractQuery(String line) {
-    return substring(line, indexOf(line, LEFT_BRACKET.toString()) + length(LEFT_BRACKET.toString()), lastIndexOf(line,
-        RIGHT_BRACKET.toString()));
+    return substring(line, indexOf(line, L_BRACKT.toString()) + length(L_BRACKT.toString()), lastIndexOf(line,
+        R_BRACKT.toString()));
   }
 
   /**
@@ -414,9 +413,9 @@ public class QueryServiceImpl implements QueryService {
    * @return queryStr
    */
   private static String specialCaseTwo(String queryStr) {
-    queryStr = replace(queryStr, join(CODE_6, QUESTION_MARK_), join(CODE_6, FONT_COLOR_RED, CODE_2, FONT_END));
-    queryStr = replace(queryStr, join(CODE_5, QUESTION_MARK_), join(CODE_5, DYNAMIC_VALUE));
-    queryStr = replace(queryStr, join(CODE_4, QUESTION_MARK_), join(CODE_4, FONT_COLOR_RED, CODE_1, FONT_END));
+    queryStr = replace(queryStr, join(CODE_6, Q_MARK), join(CODE_6, RED_FONT, CODE_2, T_END));
+    queryStr = replace(queryStr, join(CODE_5, Q_MARK), join(CODE_5, DYN_VAL));
+    queryStr = replace(queryStr, join(CODE_4, Q_MARK), join(CODE_4, RED_FONT, CODE_1, T_END));
 
     return queryStr;
   }
@@ -467,11 +466,11 @@ public class QueryServiceImpl implements QueryService {
     if (contains(line, BINDING_PARAMETER)) {
       valueStr = strip(substring(line, lastIndexOf(line, BRACKET) + length(BRACKET) - 1));
       if (contains(line, LONGVARCHAR) || contains(line, VARCHAR)) {
-        valueStr = join(SINGLE_QUOTE, valueStr, SINGLE_QUOTE);
+        valueStr = join(S_QUOTE, valueStr, S_QUOTE);
       }
     } else if (contains(line, SETTING_SQL_STATEMENT_PARAMETER_VALUE)) {
-      valueStr = replace(substring(line, indexOf(line, LEFT_BRACKET.toString()) + length(LEFT_BRACKET.toString()),
-          indexOf(line, RIGHT_BRACKET.toString())), DOUBLE_QUOTE, EMPTY);
+      valueStr = replace(substring(line, indexOf(line, L_BRACKT.toString()) + length(L_BRACKT.toString()),
+          indexOf(line, R_BRACKT.toString())), D_QUOTE, EMPTY);
     }
 
     if (isNotBlank(valueStr)) {
@@ -509,7 +508,7 @@ public class QueryServiceImpl implements QueryService {
     query = replace(query, "    ", " ");
     query = replace(query, "   ", " ");
     query = replace(query, "  ", " ");
-    query = replace(query, TABLE_SUFFIX, SPACE_TABLE_SUFFIX);
+    query = replace(query, NO_SPACE, WITH_SPACE);
     return join(query, SEMI_COLON);
   }
 
@@ -527,14 +526,14 @@ public class QueryServiceImpl implements QueryService {
   private String codeToDescription(String query, String... codes) {
     for (String code : codes) {
       if (contains(query, code)) {
-        query = replace(query, code, join(code, FONT_COLOR_BLUE_FONT, COMMENT_START, props.get(strip(substringAfter(
-            code, EQUALS))), COMMENT_END, FONT_END));
+        query = replace(query, code, join(code, BLUE_FONT, C_START, props.get(strip(substringAfter(
+            code, EQUALS))), C_END, T_END));
       }
     }
 
     if (contains(query, CODE_3)) {
-      query = replace(query, CODE_3, join(CODE_3, FONT_COLOR_BLUE_FONT, COMMENT_START, props.get("6518"), ",",
-          props.get("7658"), COMMENT_END, FONT_END));
+      query = replace(query, CODE_3, join(CODE_3, BLUE_FONT, C_START, props.get("6518"), ",",
+          props.get("7658"), C_END, T_END));
     }
 
     return query;

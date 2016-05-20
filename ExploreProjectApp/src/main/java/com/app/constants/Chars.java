@@ -8,8 +8,8 @@ public enum Chars {
   LESSTHAN('<'),
   COMMA(','),
   SEMICOLON(';'),
-  RIGHT_BRACKET(']'),
-  LEFT_BRACKET('['),
+  R_BRACKT(']'),
+  L_BRACKT('['),
   EXCLAMATION_SIGN('!');
 
   private final int ch;
