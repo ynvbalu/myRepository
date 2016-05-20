@@ -1,20 +1,21 @@
 package com.app.service;
 
-import static com.app.constants.Chars.*;
+import static com.app.constants.Chars.LEFT_BRACKET;
+import static com.app.constants.Chars.RIGHT_BRACKET;
 import static com.app.constants.Constants.*;
 import static java.nio.file.Files.readAllLines;
 import static java.nio.file.Files.write;
 import static java.nio.file.Paths.get;
 import static org.apache.commons.lang3.StringUtils.*;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.*;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.Resource;
+
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
@@ -123,7 +124,7 @@ public class QueryServiceImpl implements QueryService {
     int size = queryAndValues.size();
     Set<String> queriesOnlyList = new HashSet<>();
     String descAndCode = props.get("DESC_CODE_LIST");
-    String[] descList = split(descAndCode,",");
+    String[] descList = split(descAndCode, ",");
     JsonParser parser = new JsonParser();
     GsonBuilder gsonBuilder = new GsonBuilder();
 
@@ -200,7 +201,7 @@ public class QueryServiceImpl implements QueryService {
    * @throws IOException exception
    */
   private static void writeToQueryFile(Set<String> queriesOnlyList) throws IOException {
-    
+
     Path sortedFile = get(QUERIESFILE);
     write(sortedFile, queriesOnlyList, Charset.forName(UTF_8));
   }
@@ -413,11 +414,9 @@ public class QueryServiceImpl implements QueryService {
    * @return queryStr
    */
   private static String specialCaseTwo(String queryStr) {
-    queryStr = replace(queryStr, join(CODE_6, QUESTION_MARK_), join(CODE_6, FONT_COLOR_RED, CODE_2,
-        FONT_END));
+    queryStr = replace(queryStr, join(CODE_6, QUESTION_MARK_), join(CODE_6, FONT_COLOR_RED, CODE_2, FONT_END));
     queryStr = replace(queryStr, join(CODE_5, QUESTION_MARK_), join(CODE_5, DYNAMIC_VALUE));
-    queryStr = replace(queryStr, join(CODE_4, QUESTION_MARK_), join(CODE_4, FONT_COLOR_RED, CODE_1,
-        FONT_END));
+    queryStr = replace(queryStr, join(CODE_4, QUESTION_MARK_), join(CODE_4, FONT_COLOR_RED, CODE_1, FONT_END));
 
     return queryStr;
   }
@@ -515,8 +514,8 @@ public class QueryServiceImpl implements QueryService {
   }
 
   private String provideMoreInfo(String query, String[] descList) {
-    if(descList!= null && descList.length != 0)
-    query = codeToDescription(query, descList);
+    if (descList != null && descList.length != 0)
+      query = codeToDescription(query, descList);
     return query;
   }
 
@@ -534,56 +533,11 @@ public class QueryServiceImpl implements QueryService {
     }
 
     if (contains(query, CODE_3)) {
-      query = replace(query, CODE_3, join(CODE_3, FONT_COLOR_BLUE_FONT, COMMENT_START,
-          props.get("6518"), ",", props.get("7658"), COMMENT_END, FONT_END));
+      query = replace(query, CODE_3, join(CODE_3, FONT_COLOR_BLUE_FONT, COMMENT_START, props.get("6518"), ",",
+          props.get("7658"), COMMENT_END, FONT_END));
     }
 
     return query;
-  }
-
-  /**
-   * @param fileName file name
-   * @return list
-   * @throws IOException IOException
-   */
-  @SuppressWarnings("unused")
-  @Deprecated
-  private static List<String> filteredLines(String fileName) throws IOException {
-    List<String> lines = filteredStream(fileName).collect(Collectors.toList());
-
-    return lines;
-  }
-
-  /**
-   * @param fileName fileName
-   * @return stream
-   * @throws IOException io exception
-   */
-  @Deprecated
-  private static Stream<String> filteredStream(String fileName) throws IOException {
-    return readAllLines(get(fileName)).stream().filter(line -> contains(line, EXECUTING_SQL_QUERY) || contains(line,
-        EXECUTING_PREPARED_SQL_STATEMENT) || contains(line, DEBUG_SQL) || contains(line, BINDING_PARAMETER) || contains(
-            line, CALLING_STORED_PROCEDURE) || contains(line, SETTING_SQL_STATEMENT_PARAMETER_VALUE));
-  }
-
-  @Override
-  @Deprecated
-  public String getStartUpMessage(String fileName) throws IOException {
-    String queryStr = null;
-
-    if (isNotBlank(fileName)) {
-      Path path = get(fileName);
-      String firstLine = readAllLines(path).stream().filter(line -> contains(line,
-          THE_SERVER_STARTED_IN_RUNNING_MODE)).findFirst().get();
-
-      System.out.println(join(THE_SERVER_STARTED_IN_RUNNING_MODE, " firstLine :", firstLine));
-
-      int startIndex = indexOf(firstLine, LESSTHAN.toString()) + length(LESSTHAN.toString());
-      int lastIndexOf = indexOf(firstLine, GREATERTHAN.toString());
-      queryStr = substring(firstLine, startIndex, lastIndexOf);
-    }
-
-    return queryStr;
   }
 
   @Override
