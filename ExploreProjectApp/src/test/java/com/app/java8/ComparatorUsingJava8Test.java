@@ -1,10 +1,12 @@
-package java8.examples;
+package com.app.java8;
 
 import static org.junit.Assert.*;
 
 import java.util.*;
 
 import org.junit.*;
+
+import com.app.java8.ComparatorUsingJava8;
 
 public class ComparatorUsingJava8Test {
 

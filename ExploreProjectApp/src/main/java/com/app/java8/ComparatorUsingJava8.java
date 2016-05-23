@@ -1,4 +1,4 @@
-package java8.examples;
+package com.app.java8;
 
 import java.util.Collections;
 import java.util.List;

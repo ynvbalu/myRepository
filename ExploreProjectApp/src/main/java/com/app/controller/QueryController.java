@@ -191,6 +191,6 @@ public class QueryController {
     
     model.put("finalOutput", finalOutput);
 
-    return "search";
+    return "error";
   }
 }

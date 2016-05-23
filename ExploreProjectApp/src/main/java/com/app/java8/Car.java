@@ -1,7 +1,4 @@
-package java8.examples.interfaces.impl;
-
-import java8.examples.interfaces.FourWheeler;
-import java8.examples.interfaces.Vehicle;
+package com.app.java8;
 
 public class Car implements Vehicle, FourWheeler {
 

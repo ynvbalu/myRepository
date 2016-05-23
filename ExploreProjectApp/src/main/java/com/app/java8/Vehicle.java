@@ -1,4 +1,4 @@
-package java8.examples.interfaces;
+package com.app.java8;
 
 public interface Vehicle {
 
