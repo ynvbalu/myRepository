@@ -11,7 +11,7 @@
   <br>
   <a href="/log/log4j">log4j queries</a>
   <br>
-  <a href="/startup/CPMG_2016-04-13_11_58.log"> hibernate startup queries</a>
+  <a href="/startup/TEST_2016-04-13_11_58.log"> hibernate startup queries</a>
   <br>
   <a href="/log/xxxxxx.log"> Current queries</a>
   <br>

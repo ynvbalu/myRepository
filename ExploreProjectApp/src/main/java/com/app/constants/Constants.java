@@ -90,6 +90,6 @@ public class Constants {
   public static final String CODE_11 = "r.FRM_REF_ID";
   public static final String CODE_12 = "r.FRM_REF_ID as y0_";
   
-  public static final String QUERIES_FILE = "queries.txt";
+  public static final String QUERIES_FILE = "C:\\applications\\code_queries\\queries.txt";
   public static final String CODE_DESC = "code_desc.properties";
 }
