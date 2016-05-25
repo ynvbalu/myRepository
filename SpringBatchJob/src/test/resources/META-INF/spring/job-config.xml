@@ -24,8 +24,8 @@
     http://www.springframework.org/schema/jdbc 
 	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 	
-	<bean id="student" class="com.javacodegeeks.example.utils.StudentModel" scope="prototype"/>
-	
+	<bean id="student" class="com.naga.Student" scope="prototype" />
+
 	<batch:job id="batchJob" restartable="true">
 		<batch:step id="batchStep">
 			<batch:tasklet allow-start-if-complete="true">
@@ -80,7 +80,7 @@
    <bean id="unmarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
    	<property name="aliases">
    		<util:map id="aliases">
-   			<entry key="student" value="com.javacodegeeks.example.utils.StudentModel"></entry>
+   			<entry key="student" value="com.naga.Student"></entry>
    		</util:map>
    	</property>
    </bean>

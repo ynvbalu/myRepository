@@ -1,4 +1,4 @@
-package com.javacodegeeks.example;
+package com.naga;
 
 import junit.framework.Assert;
 
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:META-INF/spring/context.config.xml",
 		                         "classpath:META-INF/spring/job-config.xml"})
-public class TestJob {
+public class JobTest {
 	
 	@Autowired
 	private JobLauncherTestUtils launcher;

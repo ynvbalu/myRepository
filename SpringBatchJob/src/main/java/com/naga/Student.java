@@ -1,10 +1,11 @@
-package com.javacodegeeks.example.utils;
+package com.naga;
 
-public class StudentModel {
+public class Student {
 
-	String firstName, lastName;
-	String school;
-	int rollNumber;
+	private String firstName, lastName;
+	private String school;
+	private int rollNumber;
+	
 	public String getFirstName() {
 		return firstName;
 	}
