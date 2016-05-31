@@ -18,6 +18,8 @@
   <a href="/find/CPMG_2016-05-13_15_49.log/JdbcCoordinatorImpl"> search queries</a>
   <br>
   <a href="/error/xxxxx.log/"> Find Errors</a>
+  <br>
+  <a href="/ajax.html"> Ajax Call</a>
   
 </body>
 
