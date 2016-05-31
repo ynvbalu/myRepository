@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
      var intervalId = 0;
-     intervalId = setInterval(myAjax(), 3000);
+     intervalId = setInterval(myAjax, 3000);
 </script>
 </head>
 <body>
