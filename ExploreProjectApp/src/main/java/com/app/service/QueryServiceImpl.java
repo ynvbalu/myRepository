@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -30,7 +30,7 @@ public class QueryServiceImpl implements QueryService {
   @Bean(name = "props")
   public static PropertiesFactoryBean mapper() {
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
-    bean.setLocation(new ClassPathResource(CODE_DESC));
+    bean.setLocation(new FileSystemResource(CODE_DESC));
 
     return bean;
   }
