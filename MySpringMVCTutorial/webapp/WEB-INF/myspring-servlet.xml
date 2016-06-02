@@ -14,13 +14,24 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-  <context:component-scan base-package="com.naga.controller" />
+  <context:component-scan base-package="com.naga.*" />
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
     <property name="prefix" value="/WEB-INF/jsp/" />
     <property name="suffix" value=".jsp" />
-
   </bean>
+
+  <bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+    <property name="order" value="1" />
+    <property name="basename" value="views" />
+  </bean>
+
+  <bean id="viewResolver2" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="order" value="2" />
+    <property name="prefix" value="/WEB-INF/jsp/" />
+    <property name="suffix" value=".jsp" />
+  </bean>
+
 
 </beans>

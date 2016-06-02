@@ -7,13 +7,19 @@
 </head>
 <body>
   <br>
-  <div style="text-align: center">
+  <div style="text-align: left">
     <h2>
       Hey You..!! This is your 1st Spring MCV Tutorial..<br> <br>
     </h2>
     <h3>
       <a href="welcome.html">Click here to See Welcome Message... </a>
       (to check Spring MVC Controller... @RequestMapping("/welcome"))
+    </h3>
+  </div>
+   <div align="left">
+    <h1>Spring MVC PDF View Demo (using iText library)</h1>
+    <h3>
+      <a href="downloadPDF.html">Download PDF Document</a>
     </h3>
   </div>
 </body>
