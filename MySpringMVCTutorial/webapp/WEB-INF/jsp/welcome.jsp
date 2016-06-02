@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>welcome</title>
 </head>
 <body>
-${message}
+ <div style="text-align: left">
+ ${message}
+ </div>
+
 </body>
 </html>

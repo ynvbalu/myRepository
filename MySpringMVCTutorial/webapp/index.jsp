@@ -3,24 +3,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Spring</title>
 </head>
 <body>
-  <br>
   <div style="text-align: left">
-    <h2>
-      Hey You..!! This is your 1st Spring MCV Tutorial..<br> <br>
-    </h2>
-    <h3>
+    <h6>
       <a href="welcome.html">Click here to See Welcome Message... </a>
       (to check Spring MVC Controller... @RequestMapping("/welcome"))
-    </h3>
+    </h6>
   </div>
-   <div align="left">
-    <h1>Spring MVC PDF View Demo (using iText library)</h1>
-    <h3>
+  <div align="left">
+    <h5>Spring MVC PDF View Demo (using iText library)</h1>
+    <h6>
       <a href="downloadPDF.html">Download PDF Document</a>
-    </h3>
+    </h6>
+  </div>
+  <div align="left">
+    <h5>Spring MVC Excel View Demo (Apache POI)</h1>
+    <h6>
+      <a href="downloadExcel.html">Download Excel Document</a>
+    </h6>
   </div>
 </body>
 </html>
