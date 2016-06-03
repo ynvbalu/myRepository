@@ -13,16 +13,20 @@
     </h6>
   </div>
   <div align="left">
-    <h5>Spring MVC PDF View Demo (using iText library)</h1>
-    <h6>
-      <a href="downloadPDF.html">Download PDF Document</a>
-    </h6>
+    <h5>
+      Spring MVC PDF View Demo (using iText library)
+      </h1>
+      <h6>
+        <a href="downloadPDF.html">Download PDF Document</a>
+      </h6>
   </div>
   <div align="left">
-    <h5>Spring MVC Excel View Demo (Apache POI)</h1>
-    <h6>
-      <a href="downloadExcel.html">Download Excel Document</a>
-    </h6>
+    <h5>
+      Spring MVC Excel View Demo (Apache POI)
+      </h1>
+      <h6>
+        <a href="downloadExcel.html">Download Excel Document</a>
+      </h6>
   </div>
 </body>
 </html>
