@@ -5,6 +5,8 @@ import static org.apache.commons.lang3.StringUtils.contains;
 import static org.apache.commons.lang3.StringUtils.join;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.excel.ExcelBuilder;
+import com.app.pdf.PDFBuilder;
 import com.app.service.QueryService;
 
 @Controller
@@ -24,6 +27,8 @@ public class QueryController {
 
   @Value("${application.message:Hello World}")
   private String message = "Hello World";
+
+  private DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
   @Inject
   private QueryService queryService;
@@ -237,7 +242,7 @@ public class QueryController {
       throws IOException {
     List<String> existing = new ArrayList<>();
     Object attribute = request.getSession().getAttribute("finalOutput");
-    
+
     if (attribute != null) {
       existing = (List<String>) attribute;
     }
@@ -249,8 +254,32 @@ public class QueryController {
     }
     // return a view which will be resolved by an excel view resolver
     response.setContentType("application/ms-excel");
-    response.setHeader("Content-disposition", "attachment; filename=myfile.xls");
+    String fileName = "queries_" + df.format(new Date()) + ".xls";
+    response.setHeader("Content-disposition", "attachment; filename=" + fileName);
     return new ModelAndView(new ExcelBuilder(), "listOfQueries", listOfQueries);
+  }
+
+  @RequestMapping(value = "/downloadPDF/{name}", method = RequestMethod.GET)
+  public ModelAndView downloadPDF(@PathVariable String name, HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+    List<String> existing = new ArrayList<>();
+    Object attribute = request.getSession().getAttribute("finalOutput");
+
+    if (attribute != null) {
+      existing = (List<String>) attribute;
+    }
+
+    List<String> listOfQueries = getQueriesFromLogFile(name, request);
+
+    if (listOfQueries != null) {
+      listOfQueries.addAll(existing);
+    }
+    // return a view which will be resolved by an excel view resolver
+    response.setContentType("application/pdf");
+    String fileName = "queries_" + df.format(new Date()) + ".pdf";
+
+    response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+    return new ModelAndView(new PDFBuilder(), "listOfQueries", listOfQueries);
   }
 
 }

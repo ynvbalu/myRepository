@@ -42,7 +42,8 @@ table td.absorbing-column {
     </tr> --%>
     <tr>
       <td width="8">No</td>
-      <td>Query &nbsp&nbsp<a href="/downloadExcel/TEST_2016-06-02_10_07.log"> Export to Excel</a>
+      <td>Query &nbsp&nbsp<a href="/downloadExcel/TEST_2016-05-31_09_32.log"> Export to Excel</a> &nbsp&nbsp<a
+          href="/downloadPDF/TEST_2016-05-31_09_32.log"> Export to PDF</a>
       </td>
     </tr>
     <c:forEach var="valueFromTheLists" items="${finalOutput}" varStatus="loop">
