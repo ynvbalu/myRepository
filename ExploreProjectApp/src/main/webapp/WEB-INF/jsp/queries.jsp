@@ -94,7 +94,7 @@ table td.absorbing-column {
     %>
     <tr>
       <td><%=j%></td>
-      
+
       <%
       if(myTemp.contains("FROM") && myTemp.contains("WHERE")) {
         if(!myTemp.contains(("ROW_NUMBER() OVER("))) {
@@ -107,10 +107,8 @@ table td.absorbing-column {
     
     //System.out.println(myTemp);
     %>
-    <td><%=temp%>
-    <%-- <marquee direction="left" scrolldelay="85"><%=myTemp.trim()%></marquee> --%>
-    <%-- <%=myTemp.trim()%> --%>
-    </td>
+      <td><%=temp%> <%-- <marquee direction="left" scrolldelay="85"><%=myTemp.trim()%></marquee> --%> <%-- <%=myTemp.trim()%> --%>
+      </td>
     </tr>
     <%
       } else {

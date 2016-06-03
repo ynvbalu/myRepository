@@ -42,4 +42,5 @@ public class ExploreProjectApplication extends SpringBootServletInitializer {
 	        container.addErrorPages(error401Page, error404Page, error500Page);
 	   });
 	}
+	
 }

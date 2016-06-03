@@ -2,13 +2,16 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <html lang="en">
 
 <head>
 <style>
-body { white-space: pre; }
+body {
+  white-space: pre;
+}
+
 table {
   table-layout: auto;
   border-collapse: collapse;
@@ -17,7 +20,6 @@ table {
 
 /* tr.even { background: red; }
 tr.odd { background: white; } */
-
 table td {
   border: 1px solid #ccc;
   vertical-align: top;
@@ -40,22 +42,23 @@ table td.absorbing-column {
     </tr> --%>
     <tr>
       <td width="8">No</td>
-      <td>Query</td>
+      <td>Query &nbsp&nbsp<a href="/downloadExcel/TEST_2016-06-02_10_07.log"> Export to Excel</a>
+      </td>
     </tr>
     <c:forEach var="valueFromTheLists" items="${finalOutput}" varStatus="loop">
-    
+
       <c:set var="valueWithOutSpace" value="${fn:replace(valueFromTheLists, 'and', '<br>and')}" />
       <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'AND', '<br>AND')}" />
       <c:if test="${not fn:contains(valueWithOutSpace, 'SELECT * from')}">
-         <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'FROM', '<br>FROM')}" />
-         <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'from', '<br>from')}" />
-         <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'values (', '<br>values (')}" />
+        <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'FROM', '<br>FROM')}" />
+        <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'from', '<br>from')}" />
+        <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'values (', '<br>values (')}" />
       </c:if>
-      
-        <tr class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
-          <td>${loop.index}</td>
-          <td>${valueWithOutSpace}</td>
-        </tr>
+
+      <tr class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
+        <td>${loop.index}</td>
+        <td>${valueWithOutSpace}</td>
+      </tr>
     </c:forEach>
   </table>
 </body>

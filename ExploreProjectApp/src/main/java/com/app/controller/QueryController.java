@@ -4,18 +4,19 @@ import static com.app.constants.Constants.*;
 import static org.apache.commons.lang3.StringUtils.contains;
 import static org.apache.commons.lang3.StringUtils.join;
 
+import java.io.IOException;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.excel.ExcelBuilder;
 import com.app.service.QueryService;
 
 @Controller
@@ -54,6 +55,19 @@ public class QueryController {
   @RequestMapping("/log/{name}")
   public String readQueriesAndBindingValuesFromLogFile(@PathVariable String name, Map<String, Object> model,
       HttpServletRequest request) throws Exception {
+    List<String> finalOutput = getQueriesFromLogFile(name, request);
+    model.put("finalOutput", finalOutput);
+    // finalOutput.forEach(line -> System.out.println(line));
+    return "log_temp1";
+  }
+
+  /**
+   * @param name log filename
+   * @param request request
+   * @return list of queries
+   * @throws IOException IOException
+   */
+  private List<String> getQueriesFromLogFile(String name, HttpServletRequest request) throws IOException {
     String location = null;
     Integer readFromThatLine = 0;
     List<String> finalOutput = null;
@@ -84,9 +98,9 @@ public class QueryController {
     }
 
     finalOutput = queryService.getFormattedQueriesWithBindingValues(location, readFromThatLine);
-    model.put("finalOutput", finalOutput);
-    // finalOutput.forEach(line -> System.out.println(line));
-    return "log_temp1";
+    httpSession.setAttribute("finalOutput", finalOutput);
+
+    return finalOutput;
   }
 
   @SuppressWarnings("unchecked")
@@ -217,4 +231,26 @@ public class QueryController {
 
     return finalOutput;
   }
+
+  @RequestMapping(value = "/downloadExcel/{name}", method = RequestMethod.GET)
+  public ModelAndView downloadExcel(@PathVariable String name, HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+    List<String> existing = new ArrayList<>();
+    Object attribute = request.getSession().getAttribute("finalOutput");
+    
+    if (attribute != null) {
+      existing = (List<String>) attribute;
+    }
+
+    List<String> listOfQueries = getQueriesFromLogFile(name, request);
+
+    if (listOfQueries != null) {
+      listOfQueries.addAll(existing);
+    }
+    // return a view which will be resolved by an excel view resolver
+    response.setContentType("application/ms-excel");
+    response.setHeader("Content-disposition", "attachment; filename=myfile.xls");
+    return new ModelAndView(new ExcelBuilder(), "listOfQueries", listOfQueries);
+  }
+
 }

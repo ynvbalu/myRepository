@@ -20,7 +20,7 @@
   <a href="/error/xxxxx.log/"> Find Errors</a>
   <br>
   <a href="/ajax.html"> Ajax Call</a>
-  
+
 </body>
 
 </html>
