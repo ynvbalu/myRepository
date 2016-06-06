@@ -30,5 +30,10 @@ public class MySpringAjaxQuery {
   public ModelAndView showHideJquery() {
     return new ModelAndView("show_hide_jquery");
   }
+  
+  @RequestMapping("/spring")
+  public ModelAndView showInterview() {
+    return new ModelAndView("spring-1");
+  }
 
 }
