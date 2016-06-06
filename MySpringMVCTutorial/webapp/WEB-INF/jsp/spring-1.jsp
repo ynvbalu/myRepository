@@ -61,14 +61,23 @@
       It just uses the service locator to do it.
     </li>
   </ol>
-  <br>
-  <p>The core of the Spring Framework is its Inversion of Control (Ioc) container. The Spring IoC container manages
-    Java objects from their instantiation to destruction via its BeanFactory. Java components that are instantiated by
-    the IoC container are called beans, and the IoC container manages a beans scope (e.g. prototype vs singleton),
-    lifecycle events (e.g. initialization, method callbacks & shutdown), and any AOP (Aspect Oriented Programming)
-    features if configured. 
-    <br>
-    The key focus of both types of IoC is to loosely couple dependencies among components like
-    MyApp, MyService, and Procesor as per the examples in the package (com.mytutorial)</p>
+  <p>
+    The core of the Spring Framework is its Inversion of Control (Ioc) container. The Spring IoC container manages Java
+    objects from their instantiation to destruction via its BeanFactory. Java components that are instantiated by the
+    IoC container are called beans, and the IoC container manages a beans scope (e.g. prototype vs singleton), lifecycle
+    events (e.g. initialization, method callbacks & shutdown), and any AOP (Aspect Oriented Programming) features if
+    configured. <br> <br> The key focus of both types of IoC is to loosely couple dependencies among
+    components like MyApp, MyService, and Procesor as per the examples in the package (com.mytutorial)
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q4.</span> What are the different types of dependency injections?<br />
+    <span style="font-size: large; color: brown;">A4.</span> There are 4 types of dependency injection. Spring supports
+    3 types. 1, 2 &#038; 4 shown below.
+  </p>
+  <p>
+    <strong>1)</strong> <strong>Constructor Injection</strong> (e.g. Spring): Dependencies are provided as <strong>constructor
+      parameters</strong>.
+  </p>
+  <p></p>
 </body>
 </html>
