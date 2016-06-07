@@ -257,7 +257,10 @@ style="font-size: large; color: brown;">A12.</span> Beans are wired up inside Sp
 like @Component, @Resource, etc. The initial bean needs to be bootstrapped, and there are a number of approaches 
 as shown below.</p><p><strong>1. </strong>Using the &#8220;<strong>ClassPathXmlApplicationContext</strong>
 &#8221; class in Spring</p><p></p>
-
+<p><strong>2. </strong>Using the &#8220;<strong>FileSystemResource</strong>&#8221; class in Spring</p><p></p>
+<p></p><p><strong>3.</strong> Using the &#8220;<strong>ClassPathResource</strong>&#8221;</p><p></p>
+<p></p><p><strong>4. For  @Configuration annotation</strong> driven configurations use 
+<strong>AnnotationConfigApplicationContext</strong></p><p></p>
 
 </body>
 </html>
