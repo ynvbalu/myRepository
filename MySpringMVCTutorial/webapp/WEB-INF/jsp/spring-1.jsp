@@ -242,5 +242,22 @@
 <p></p><p><strong>Step 2:</strong> MyAppBeanImpl bean with business logic interface MyAppBean, and life cycle 
 interfaces BeanNameAware and BeanFactoryAware</p><p></p>
 
+<p></p><p><strong>Step 4:</strong>: The output of the code is:</p><p>the name of the bean is myAppBean<br
+/> received the beanFactory org.springframework.beans.factory.xml.XmlBeanFactory@f6f542:<br
+/> defining beans [myAppBean]; root of factory hierarchy<br
+/> Hello, I am initialized</p><p><span
+style="font-size: large; color: brown;">Q11.</span> What is a BeanFactory?<br
+/> <span
+style="font-size: large; color: brown;">A11.</span> The BeanFactory is the actual container which instantiates, 
+configures, and manages a number of beans. These beans typically collaborate with one another, and thus have 
+dependencies between themselves.</p><p><span
+style="font-size: large; color: brown;">Q12.</span> How do you bootstrap the initial bean?<br
+/> <span
+style="font-size: large; color: brown;">A12.</span> Beans are wired up inside Spring XML file or via annotations 
+like @Component, @Resource, etc. The initial bean needs to be bootstrapped, and there are a number of approaches 
+as shown below.</p><p><strong>1. </strong>Using the &#8220;<strong>ClassPathXmlApplicationContext</strong>
+&#8221; class in Spring</p><p></p>
+
+
 </body>
 </html>
