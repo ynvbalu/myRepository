@@ -223,7 +223,7 @@
   If the bean declares custom init method, the container calls custom init method of that bean</p>
   <p></p>
 
- <textarea  rows="1" cols="150">
+ <textarea  rows="1" cols="110">
   &lt;bean id="myAppBean" class="com.myapp.MyAppBeanImpl"  init-method="init" destroy-method="destroy" /&gt;
   </textarea>
 
@@ -236,7 +236,7 @@
   container calls custom destroy method of bean.</p><h3>Bean Life Cycle Example</h3><p><strong>Step 1:</strong> 
   myApp-applicationContext.xml file</p><p></p>
   
-  <textarea  rows="1" cols="150">
+  <textarea  rows="1" cols="110">
   &lt;bean id="myAppBean" class="com.myapp.MyAppBeanImpl"  init-method="init" destroy-method="destroy" /&gt;
   </textarea>
 <p></p><p><strong>Step 2:</strong> MyAppBeanImpl bean with business logic interface MyAppBean, and life cycle 
@@ -261,6 +261,54 @@ as shown below.</p><p><strong>1. </strong>Using the &#8220;<strong>ClassPathXmlA
 <p></p><p><strong>3.</strong> Using the &#8220;<strong>ClassPathResource</strong>&#8221;</p><p></p>
 <p></p><p><strong>4. For  @Configuration annotation</strong> driven configurations use 
 <strong>AnnotationConfigApplicationContext</strong></p><p></p>
+
+<p><strong>5. From a Web application</strong>.  As opposed to the BeanFactory, which will often be 
+created programmatically, ApplicationContexts can be created declaratively using a ContextLoader. 
+You can register an <strong>ApplicationContext </strong>using the <strong>ContextLoaderListener </strong>as shown 
+below in the <strong>web.xml</strong> file. The Spring context listener provides more flexibility in terms of how 
+an application is wired together. It uses the application&#8217;s Spring configuration to determine what object to 
+instantiate and loads the objects into the application context used by the servlet container.</p><p></p>
+
+<textarea  rows="6" cols="110">
+  .....
+  &lt;listener&gt;
+     &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+  ....
+</textarea>
+
+<p></p><p>By default, it looks for a file named <strong>applicationContext.xml</strong> file in WEB-INF folder. 
+But, you can configure the org.springframework.web.context.ContextLoaderListener class to use a context parameter 
+called contextConfigLocation to determine the location of the Spring configuration file. The context parameter is 
+configured using the context-parameter element. The context-param element has two children that specify parameters 
+and their values. The param-name element specifies the parameter&#8217;s name. The param-value element specifies 
+the parameter&#8217;s value.</p><p></p>
+
+<textarea  rows="12" cols="110">
+ <web-app>
+  ...
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>WEB-INF/myApp-applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  ...
+</web-app>
+</textarea>
+
+<p></p><p><spa style="font-size: large; color: brown;">Q13.</span> What would you do, if it's not practical 
+(or impossible) to wire up your entire application into the Spring framework, but you still need a Spring loaded bean 
+in order to perform a task?<br/> 
+<span style="font-size: large; color: brown;">A13.</span> </p>
+For example,
+<p>&#8212; an auto generated web service client class! But you do want to use the dependency injection feature 
+of Spring to get some of the other beans injected in to this class.<br
+/> &#8212; A legacy code that needs to make use of a Spring bean.</p><p>The ApplicationContextAware interface provided 
+by Spring allows you to wire some Java classes which are unable (or you don't want it) to be wired to the Spring 
+application context.</p><p><strong>STEP 1:</strong> The <strong>ApplicationContextAware </strong>interface makes 
+sense when an object requires access to a set of collaborating beans.</p><p></p>
 
 </body>
 </html>

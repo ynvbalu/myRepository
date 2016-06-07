@@ -35,5 +35,10 @@ public class MySpringAjaxQuery {
   public ModelAndView showInterview() {
     return new ModelAndView("spring-1");
   }
+  
+  @RequestMapping("/cj")
+  public ModelAndView showCoreJava() {
+    return new ModelAndView("corejava-1");
+  }
 
 }
