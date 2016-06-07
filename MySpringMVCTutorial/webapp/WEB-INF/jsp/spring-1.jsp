@@ -79,5 +79,49 @@
       parameters</strong>.
   </p>
   <p></p>
+  <p>
+    <strong>2) </strong><strong>Setter Injection</strong> (e.g. Spring): Dependencies are assigned through <strong>setter
+      methods</strong>.
+  </p>
+  <p></p>
+  <p></p>
+  <p>
+    <strong>3)</strong> <strong>Interface Injection</strong> (e.g. Avalon): Injection is done through an interface.
+  </p>
+  <p>
+    <strong>4)</strong> <strong>Field injection</strong>: Using annotations on fields and parameters.
+  </p>
+  <p></p>
+  <p></p>
+  <p>
+    Spring supports <strong>1)</strong> Constructor Injection, <strong>2)</strong> Setter Injection &#038; <strong>4)
+    </strong>Field injection with annotations.
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q5.</span> Which ones are the most commonly used DIs?<br /> <span
+      style="font-size: large; color: brown;">A5.</span> <strong>1)</strong> Constructor Injection, <strong>2)</strong>
+    Setter Injection &#038; <strong>4) </strong>Field injection with annotations.
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q6.</span> When will you favor DI type &#8220;Constructor
+    Injection&#8221; over &#8220;Setter Injection&#8221;?<br /> <span style="font-size: large; color: brown;">A6.</span>
+    Using constructor injection allows you to hide immutable fields from users of your class. Immutable classes
+    don&#8217;t declare setter methods. This also enforces that you have the valid objects at the construction time. It
+    also prompts you to rethink about your design when you have too many constructor parameters.
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q7.</span> When will you favor DI type &#8220;Setter Injection&#8221;
+    over &#8220;Constructor Injection&#8221;?<br /> <span style="font-size: large; color: brown;">A7.</span> In some
+    scenarios, the constructors may get a lot of parameters, which force you to create a lot of overloaded constructors
+    for every way the object might be created. In these scenarios setter injection can be favored over constructor
+    injection, but having too many constructor parameters may be an indication of a bad design.
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q8.</span> Can you describe the high level Spring architecture?<br />
+    <span style="font-size: large; color: brown;">A8.</span> A Spring Bean represents a POJO (Plain Old Java Object)
+    performing useful operation(s). All Spring Beans reside within a Spring IoC Container. The Spring Framework hides
+    most of the complex infrastructure and the communication that happens between the Spring Container and the Spring
+    Beans. The Core Container is shown below.
+  </p>
 </body>
 </html>
