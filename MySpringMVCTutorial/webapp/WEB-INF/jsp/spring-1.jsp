@@ -237,8 +237,10 @@
   myApp-applicationContext.xml file</p><p></p>
   
   <textarea  rows="1" cols="150">
-    &lt;bean id="myAppBean" class="com.myapp.MyAppBeanImpl"  init-method="init" destroy-method="destroy" /&gt;
+  &lt;bean id="myAppBean" class="com.myapp.MyAppBeanImpl"  init-method="init" destroy-method="destroy" /&gt;
   </textarea>
+<p></p><p><strong>Step 2:</strong> MyAppBeanImpl bean with business logic interface MyAppBean, and life cycle 
+interfaces BeanNameAware and BeanFactoryAware</p><p></p>
 
 </body>
 </html>
