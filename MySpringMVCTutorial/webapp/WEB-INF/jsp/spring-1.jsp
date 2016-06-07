@@ -123,5 +123,20 @@
     most of the complex infrastructure and the communication that happens between the Spring Container and the Spring
     Beans. The Core Container is shown below.
   </p>
+  <br>
+  <div style="width: 924px">
+    <img src="./images/Spring-architecture.png" alt="Spring Architecture" width="874" height="757"
+      sizes="(max-width: 874px) 100vw, 874px">
+    <p align="center">Spring Architecture</p>
+  </div>
+  <p>Spring framework architecture is modular with layers like core, data access &#038; integration, web/remoting,
+    and other miscellaneous support.</p>
+  <p>
+    <span style="font-size: large; color: brown;">Q9.</span> What are the packages (i.e. jar files) required in your
+    project to get started with a Spring application?<br /> <span style="font-size: large; color: brown;">A9.</span>
+    In order to get started with Spring, your maven pom.xml file should at least have the following <strong>core
+      Spring packages</strong>:
+  </p>
+  <p></p>
 </body>
 </html>
