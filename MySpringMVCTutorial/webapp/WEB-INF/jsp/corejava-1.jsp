@@ -92,5 +92,109 @@
     <img src="./images/cj2.png" alt="String Pool" width="644" height="380" sizes="(max-width: 644px) 100vw, 644px">
     <p align="center">String Pool</p>
   </div>
+  <p>
+    <strong>In Java 6</strong> &#8212; all interned strings were stored in the <strong>PermGen</strong> - the fixed size
+    part of heap mainly used for storing loaded classes and string pool.
+  </p>
+  <p>
+    <strong>In Java 7</strong> - the string pool was relocated to the <strong>heap</strong>. So, you are not restricted
+    by the limited size.
+  </p>
+
+  <p>
+    <b>2. Thread safety </b> as immutable classes are inherently thread safe as they cannot be modified once created.
+    They can only be used as a read only objects. They can easily be shared among multiple threads for better
+    scalability.
+  </p>
+  <p>
+    <b>3. Errors &#038; Security Vulnerabilities</b>: In Java you pass sensitive information like file names, host
+    names, login names, passwords, customer account numbers, etc as a string object. If String were not immutable, a
+    password or account number can be accidentally &#038; easily changed, which can cause errors and security
+    vulnerabilities.<br />
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q4. </span> In Java, what purpose does the key words <b>final</b>, <b>finally</b>,
+    and <b>finalize</b> fulfill?<br /> <span style="font-size: large; color: brown;">A4. </span> &#8216;<b>final</b>&#8216;
+    makes a variable reference not changeable, makes a method not overridable, and makes a class not inheritable.
+  </p>
+
+  <p>
+    &#8216;<b>finally</b>&#8216; is used in a try/catch statement to almost always execute the code. Even when an
+    exception is thrown, the finally block is executed. This is used to close non-memory resources like file handles,
+    sockets, database connections, etc till Java 7. This is is no longer true in Java 7.
+  </p>
+  <p>
+    Java 7 has introduced the <i>AutoCloseable</i> interface to avoid the unsightly try/catch/finally(within finally
+    try/catch) blocks to close a resource. It also prevents potential resource leaks due to not properly closing a
+    resource.
+  </p>
+  <p>
+    <b>// pre Java 7<br />
+    </b>
+  </p>
+  <p></p>
+  <textarea rows="25" cols="110">
+     BufferedReader br = null;
+     try {
+       File f = new File("c://temp/simple.txt");
+       InputStream is = new FileInputStream(f);
+       InputStreamReader isr = new InputStreamReader(is);
+       br = new BufferedReader(isr);
+       String read;
+       while ((read = br.readLine()) != null) {
+          System.out.println(read);
+       }
+     } catch (IOException ioe) {
+       ioe.printStackTrace();
+     } finally {
+       //Hmmm another try catch. unsightly
+       try {
+         if (br != null) {
+            br.close();
+       }
+       } catch (IOException ex) {
+         ex.printStackTrace();
+      }
+    }
+  </textarea>
+  <p>
+    <b>Java 7</b> - try can have <b><i>AutoCloseble</i></b> types. <i>InputStream</i> and <i>OutputStream</i> classes
+    now implements the Autocloseable interface.
+  </p>
+  <p></p>
+  <textarea rows="12" cols="110">
+     try (InputStream is = new FileInputStream(new File("c://temp/simple.txt"));
+     InputStreamReader isr = new InputStreamReader(is);
+     BufferedReader br2 = new BufferedReader(isr);) {
+       String read;
+       while ((read = br2.readLine()) != null) {
+          System.out.println(read);
+       }
+     }
+     catch (IOException ioe) {
+       ioe.printStackTrace();
+     }
+  </textarea>
+  <p></p>
+  <p>
+    try can now have multiple statements in the parenthesis and each statement should create an object which implements
+    the new <i>java.lang.AutoClosable</i> interface. The <i><b>AutoClosable</b></i> interface consists of just one
+    method. void close() throws <i>Exception</i> {}. Each <i>AutoClosable</i> resource created in the try statement will
+    be automatically closed without requiring a finally block. If an exception is thrown in the try block and another
+    Exception is thrown while closing the resource, the first Exception is the one eventually thrown to the caller.
+    Think of the <i>close( ) </i>method as implicitly being called as the last line in the try block.
+  </p>
+  <p>
+    &#8216;<b>finalize</b>&#8216; is called when an object is garbage collected. You rarely need to override it. It
+    should not be used to release non-memory resources like file handles, sockets, database connections, etc because
+    Java has only a finite number of these resources and you do not know when the garbage collection is going to kick in
+    to release these non-memory resources through the <i>finalize( ) </i>method.
+  </p>
+  <p>So, final and finally are used very frequently in your Java code, but the key word finalize is hardly or never
+    used.</p>
+  <p>
+    <span style="font-size: large; color: brown;">Q5. </span> What value will the following method return?
+  </p>
+  <p></p>
 </body>
 </html>
