@@ -40,5 +40,10 @@ public class MySpringAjaxQuery {
   public ModelAndView showCoreJava() {
     return new ModelAndView("corejava-1");
   }
+  
+  @RequestMapping("/j8")
+  public ModelAndView java_8_transforming_thinking_oop_fop_java_8_examples() {
+    return new ModelAndView("java-8-transforming-thinking-oop-fop-java-8-examples");
+  }
 
 }

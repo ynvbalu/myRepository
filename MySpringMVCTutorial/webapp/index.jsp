@@ -25,7 +25,11 @@
       Spring MVC Excel View Demo (Apache POI)
       </h1>
       <h6>
-        <a href="downloadExcel.html">Download Excel Document</a>
+        <a href="downloadExcel.html">Download Excel Document</a><br><br>
+        <a href="spring.html">Spring</a><br><br>
+        <a href="cj.html">Core Java</a><br><br>
+        <a href="j8.html">Java 8</a><br><br>
+        
       </h6>
   </div>
 </body>
