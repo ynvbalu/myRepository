@@ -439,5 +439,49 @@
     <b>4) </b>Check if the application is running under the right JDK? Check the JAVA_HOME environment property
   </p>
   <p></p>
+  <textarea rows="1" cols="110">
+    $ echo $JAVA_HOME
+  </textarea>
+  <p>
+    <strong>5)</strong> <strong>-verbose:class</strong> option in your JVM. With the -verbose option all the classes
+    that are loaded are listed, along with the JAR file or directory from which they were loaded. The
+    &#8220;class&#8221; output shows additional information, such as when superclasses are being loaded, and when static
+    initializers are being run.
+  </p>
+  <p>
+    <strong>6) </strong>Creating a <strong>Java dump and analyzing the Java dump</strong> for class loading issues. The
+    Java dumps are created under following circumstances.
+  </p>
+  <p>
+    &#8212; When a fatal native JVM error is thrown.<br /> &#8212; When the JVM runs out of heap memory space.<br />
+    &#8212; When a signal is sent to the JVM (e.g. Control-Break is pressed on Windows, Control-\ on Linux, or kill -3
+    on Unix)
+  </p>
+  <p>
+    There are tools like <strong>jstack</strong>, <strong>jmap</strong>, <strong>hprof</strong>, and Eclipse Memory
+    Analyzer (MAT) to analyze the Java dumps.
+  </p>
+  <p>
+    <strong>7)</strong> Some of the libraries provide <strong>API to list the version number</strong>. For example, The
+    Eclipse link MOXy library provides a method as shown below.
+  </p>
+  <p></p>
+  <textarea rows="1" cols="110">
+    org.eclipse.persistence.Version.getVersion();
+  </textarea>
+  <p>
+    <strong>8)</strong> The org.jboss.test.util.Debug class has a method <em>displayClassInfo(Class clazz,
+      StringBuffer results)</em> to display the loaded class details. This is done programmatically. What this class
+    essentially does is
+  </p>
+  <p></p>
+  <textarea rows="1" cols="110">
+    URL loc = MyClass.class.getProtectionDomain().getCodeSource().getLocation();
+  </textarea>
+  <p></p>
+  <p>
+    <strong>9)</strong> The http://www.findjar.com is an online search engine that can list possible jar files in which
+    a particular class file like java.sql.Connection can be found.
+  </p>
 </body>
 </html>
