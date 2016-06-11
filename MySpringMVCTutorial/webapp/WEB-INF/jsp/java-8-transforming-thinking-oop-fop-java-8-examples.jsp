@@ -54,5 +54,38 @@
       sizes="(max-width: 964px) 100vw, 964px">
     <p align="center">Java functional programming focusing on transforming data</p>
   </div>
+
+  <h4>#2. Flow Control:</h4>
+  <p>
+    <strong>OOP</strong> uses loops, conditions, and method calls. Order of execution is very important.
+  </p>
+  <p>
+    <strong>FP</strong> uses function calls and recursion. Order of execution is less important.
+  </p>
+  <p>
+    <span style="font-size: large; color: brown;">Q4.</span> Where does functional programming shine?<br /> <span
+      style="font-size: large; color: brown;">A4. </span><strong>Example:</strong> Here is an example written functional
+    programming to extract odd numbers from a given list of numbers and then double each odd number and print each of
+    them.
+  </p>
+  <p>
+    <strong>Functional programming</strong> using the <u>Java 8 lambda expressions</u>.
+  </p>
+  <p>Functional programming with good set of libraries can cut down lot of fluff and focus on just transformations.
+    In other words, just tell what you would like to do.</p>
+  <p></p>
+  <textarea rows="12" cols="110">
+      import java.util.Arrays;
+      public class NumberTest {
+       public static void main(String[] args) {
+        Integer[] numbers = {1,2,3,4,5,6};
+        Arrays.asList(numbers)   //convert to least
+             .stream()          //stream
+             .filter((e) -> (e % 2 != 0))   // extract only odd numbers 1, 3, 5
+             .map((e) -> (e * 2))           // double the odd numbers 2, 6, 10
+             .forEach(System.out::println); // print each doubled number.
+       }
+      }
+  </textarea>
 </body>
 </html>
