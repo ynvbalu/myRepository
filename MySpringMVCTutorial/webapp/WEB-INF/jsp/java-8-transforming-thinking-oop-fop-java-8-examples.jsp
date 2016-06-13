@@ -288,5 +288,82 @@
           }
       }
   </textarea>
+  <p>Recursion is used in the Lambda expression to calculate the factorial. This is not very straight-forward, 
+  and here are the key points to understand the above code.</p><p><strong>1)</strong> In java 8, you have 
+  Consumer&lt;T&gt; and Function&lt;T, R&gt; interfaces where a <strong>Consumer</strong> takes an object input 
+  and returns nothing and a <strong>Function</strong> takes an Object input and returns a result of type object.</p>
+  <p>&#8220;factorial&#8221; is a &#8220;<strong>Function</strong>&#8221; that takes an <strong>input</strong> of 
+  type &#8220;Integer&#8221; and result of type &#8220;Double&#8221;. The output needs to be a double because the 
+  factorials can get to very large numbers and int and long are not appropriate as this will lead to data overflow.</p>
+  <p><strong>2)</strong> In lambda, you can&#8217;t specify a recursion as shown below as you will get a compile error 
+  of &#8220;<strong>The method factorial(int) is undefined</strong>&#8221;</p>
+  <p></p>
+  <textarea rows="4" cols="110">
+      static Function<Integer, Double> factorial = x -> {
+          return (x == 0) ? 1.0 : x * factorial(x-1);
+      };
+  </textarea>
+  
+  <p>The lambda expression and anonymous classes capture local variables by value when they are created. Therefore, 
+  it is impossible for them to refer to themselves by capturing a local variable as the value for pointing to itself 
+  does not exist yet at the time it is being created.</p>
+  
+  <p><strong>3)</strong> So, to overcome the above problem, let&#8217;s create a generic helper class that wraps 
+  the variable of the functional interface type. The functional interface type is &#8220;<strong>IntToDoubleFunction
+  </strong>&#8220;, which converts an int to double.</p>
+  
+  <p><strong>4)</strong> The &#8220;applyAsDouble&#8221; method applies <strong>this</strong> function to the 
+  given argument.</p>
+  
+  <h3>5. Referential Transparency</h3><p> Referential transparency is a term commonly used in <b>functional programming</b>, 
+  which means that given a function and an input value, you will always receive the same output. There is no external 
+  state used in the function. In other words, a referentially transparent function is one which only depends on its 
+  input. The <b><i>plus5 </i></b>and <b><i>times2 </i></b>functions shown above are referentially transparent.</p>
+  <p>A function that reads from a text file and prints the output is not referentially transparent. The external text 
+  file could change at any time so the function would be referentially <b>opaque</b></p>
+  
+  <h3>6. No side-effects</h3><p></p><div> One way to do programming without side effects is to use only immutable 
+  classes. In real world, you try to minimize the mutations, but can&#8217;t eliminate them.&nbsp;Lambdas can 
+  refer to local variables that are not declared final but are never modified. This is known as &#8220;
+  <b>effectively final</b>&#8220;.&nbsp;</div><div></div><div> When you are using methods like <b>reduce </b>on a 
+  stream, you need to be aware of the side effects due to parallelism. For example, the following code will have no 
+  side effects when run in serial mode.</div>
+  
+  <textarea rows="6" cols="110">
+     public static void main(String[] args) {
+       Integer[] numbers = {10, 6};
+       Integer result = Arrays.asList(numbers).stream()
+                            .reduce(20, (a,b) -> (a - b));
+       System.out.println(result);
+      }
+  </textarea>
+  <p>It starts with 20, and then subtracts 10 and 6. <b>20 &#8211; 10 &#8211; 6 = 4</b>; But if you run it again in 
+  parallel mode as shown below</p><p></p>
+  
+  <textarea rows="6" cols="110">
+     public static void main(String[] args) {
+         Integer[] numbers = {10, 6};
+         Integer result = Arrays.asList(numbers).parallelStream()
+                                 .reduce(20, (a,b) -> (a - b));
+         System.out.println(result);
+        }
+  </textarea>
+  
+  <p></p><p>The <b>output </b>will be:</p><p>-4</p><p><b>What happened here? </b>10 &#8211; (20 &#8211; 6) = &nbsp;-4;</p>
+  <p>This means the <span style="font-size: large;"><b>reduce </b></span>method on a stream produce side effects when 
+  run in parallel for <b><span style="font-size: large;">non-associative</span></b> operations.</p>
+  
+  <p><b>Q</b>. What is an associative property?<br> <b>A</b>. Associative operations are operations where the order 
+  in which the operations were performed does not matter. For example.</p><p><b>Associative</b>:</p>
+  <p>3 + (2 + 1) = (3+ 2) + 1<br> 3 * (2 * 1) = (3 * 2) * 1</p>
+  <p><b>Non-associative</b>:</p><p>3 &#8211; (2 &#8211; 1) != (3 &#8211; 2) &#8211; 1<br> (4/2)/2 != 4/(2/2)</p>
+  <p> Pure functions are functions with no side effects. In computers, <b>idempotence </b>means that applying an 
+  operation once or applying it multiple times has the same effect. For example</p><p><b>Idempotent operations</b></p>
+  <ul><li>Multiplying a number by zero. No matter how many times you do it, the result is still zero.</li>
+  <li>Setting a boolean flag. No matter how many times you do it, the flag stays set.</li>
+  <li>Deleting a row from a database with a given ID. If you try it again, the row is still gone.</li>
+  <li>Removing an element from a collection.</li></ul>
+  <div> In real life where you have concurrent operations going on, you may find that operations you thought were 
+  idempotent cease to be so. For example, another thread could unset the value of the boolean flag.</div>
 </body>
 </html>
