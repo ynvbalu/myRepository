@@ -7,10 +7,22 @@ Run the above code as a stand-alone Java application:
 1) jps will give the process id of the
 2) jvisualvm will start the profiler that is shipped with JDK.
 
+Completed:
 http://www.codejava.net/frameworks/spring/spring-mvc-with-excel-view-example-apache-poi-and-jexcelapi
 
 http://www.java-success.com/13-spring-interview-questions-answers/
 
 http://www.java-success.com/a-q10-top-50-core-java-interview-questions/
 
+Inprogress : 
+
 http://www.java-success.com/java-8-transforming-thinking-oop-fop-java-8-examples/
+
+
+TODO :
+
+http://www.java-success.com/%E2%99%A6-how-to-go-about-designing-a-medium-size-jee-application/
+
+http://www.java-success.com/10-%E2%99%A6-executorservice-vs-forkjoin-future-vs-completablefuture-interview-qa/
+
+http://www.java-success.com/java-8-streams-lambdas-intermediate-vs-terminal-ops-lazy-loading-simple-examples/
