@@ -50,5 +50,10 @@ public class MySpringAjaxQuery {
   public ModelAndView how_to_go_about_designing_a_medium_size_jee_application() {
     return new ModelAndView("how-to-go-about-designing-a-medium-size-jee-application");
   }
+  
+  @RequestMapping("/tool")
+  public ModelAndView java_tools_remember() {
+    return new ModelAndView("java-tools-remember");
+  }
 
 }

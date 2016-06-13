@@ -76,16 +76,43 @@
     <strong>Example 1</strong>: SOAP Vs RESTful
   </p>
   <div style="width: 1691px">
-      <img src="./images/rest_soap.png" alt="SOAP Vs RESTful" width="1681" height="814" sizes="(max-width: 1681px) 100vw, 1681px">
-      <p>SOAP Vs RESTful</p>
+    <img src="./images/rest_soap.png" alt="SOAP Vs RESTful" width="1681" height="814"
+      sizes="(max-width: 1681px) 100vw, 1681px">
+    <p>SOAP Vs RESTful</p>
   </div>
   <div style="width: 1695px">
-      <img src="./images/over_http_or_messaging.png" alt="Over HTTP or Messaging" width="1685" height="521" sizes="(max-width: 1685px) 100vw, 1685px">
-      <p>Over HTTP or Messaging</p>
+    <img src="./images/over_http_or_messaging.png" alt="Over HTTP or Messaging" width="1685" height="521"
+      sizes="(max-width: 1685px) 100vw, 1685px">
+    <p>Over HTTP or Messaging</p>
   </div>
   <div style="width: 1571px">
-      <img src="./images/client_side_vs_server_side_mashups.png" alt="Client side Vs Server side mashups" width="1561" height="843" sizes="(max-width: 1561px) 100vw, 1561px">
-      <p>Client side Vs Server side mashups</p>
+    <img src="./images/client_side_vs_server_side_mashups.png" alt="Client side Vs Server side mashups" width="1561"
+      height="843" sizes="(max-width: 1561px) 100vw, 1561px">
+    <p>Client side Vs Server side mashups</p>
   </div>
+  <h5>#4. Make a decision on technology stack and frameworks to be used</h5>
+  <p>&#8212; AngularJS for web tier and Spring/Hibernate for the service and data tiers.</p>
+  <p>&#8212; Git for source control &#038; Jenkins for continuous integration.</p>
+  <p>&#8212; Eclipse or InteliJ IDE for development.</p>
+  <p>
+    &#8212; unit testing, integration testing, and performance testing frameworks &#038; tools.
+  </p>
+  <p>&#8212; JBoss application server to run the web services</p>
+  <p>
+    Build a <strong>vertical slice</strong> for a typical use case as a proof of concept for the baseline architecture.
+    Revise and improve on your design in the successive iterations. 
+  </p>
+  <h5>#5. Infrastructure &#038; Capacity planning</h5>
+  <p>
+    &#8212; <strong>Infrastructure planning:</strong> hosts, servers, operating system, application/web servers,
+    firewall rules, inter zone connectivity, etc
+  </p>
+  <p>
+    &#8212; <strong>Capacity planning:</strong> physical memory, hard disk space, CPU cores, JVM heap sizes, etc
+  </p>
+  <h5>#6. Logical &#038; physical modelling</h5>
+  <p>
+    &#8212; Identify the data requirements, and come up with logical and physical ER (<strong>Entity-Relationship</strong>)
+    diagrams.
 </body>
 </html>
