@@ -29,6 +29,7 @@
         <a href="spring.html">Spring</a><br><br>
         <a href="cj.html">Core Java</a><br><br>
         <a href="j8.html">Java 8</a><br><br>
+        <a href="jee1.html">How to go about designing a medium size JEE application</a><br><br>
         
       </h6>
   </div>

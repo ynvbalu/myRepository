@@ -45,5 +45,10 @@ public class MySpringAjaxQuery {
   public ModelAndView java_8_transforming_thinking_oop_fop_java_8_examples() {
     return new ModelAndView("java-8-transforming-thinking-oop-fop-java-8-examples");
   }
+  
+  @RequestMapping("/jee1")
+  public ModelAndView how_to_go_about_designing_a_medium_size_jee_application() {
+    return new ModelAndView("how-to-go-about-designing-a-medium-size-jee-application");
+  }
 
 }
