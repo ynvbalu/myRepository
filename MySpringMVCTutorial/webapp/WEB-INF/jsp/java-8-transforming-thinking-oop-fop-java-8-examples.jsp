@@ -245,5 +245,48 @@
        }
       }
   </textarea>
+  <p></p><h3>3. Higher order functions</h3>
+  <p> In mathematics and computer science, a <b>higher-order function</b> (aka functional form) is a function that does
+   at least one of the following:</p>
+   <p></p><ol><li>takes one or more functions as an input &#8212; for example g(f(x)), where f and g are functions, 
+   and function g composes the function f.&nbsp;</li><li><b>outputs a function</b> &#8212; for example, in the code 
+   above <b><i>plus5 </i></b>and <i>plus2 </i>outputs a function</li></ol><p></p>
+   
+   <textarea rows="7" cols="110">
+      Function<Integer, Integer> plus5 = (i) -> (i+5);
+      //closure 2 that times by 2 a given number
+      Function<Integer, Integer> times2 = (i) -> (i*2);
+      
+      also
+      
+      Function<integer integer> plus5AndThenTimes2 = plus5.andThen(times2);
+  </textarea>
+  
+  <p>outputs another function, where the <b>plus5 </b>function takes <b>plus2 </b>function as an input.</p><p></p>
+  <h3>4. Use of recursion as a mechanism for flow control</h3><p> Java is a stack based language that supports 
+  <b>reentrant (</b>a method can call itself)<b>&nbsp;</b>methods. This means recursion is possible in Java.&nbsp;
+  Using recursion you don&#8217;t need a mutable state, hence the problems can be solved in a much simpler fashion 
+  compared to using an iterative approach with a loop.
+  </p>
+  <p></p>
+  <textarea rows="20" cols="110">
+      import java.util.function.Function;
+      import java.util.function.IntToDoubleFunction;
+      public class RecursionTest {
+          static class Recursive<I> {
+              public I func;
+          }
+          static Function<Integer, Double> factorial = x -> {
+              Recursive<IntToDoubleFunction> recursive = new Recursive<IntToDoubleFunction>();
+              recursive.func = n -> (n == 0) ? 1 : n
+                      * recursive.func.applyAsDouble(n - 1);
+              return recursive.func.applyAsDouble(x);
+          };
+          public static void main(String[] args) {
+              Double result = factorial.apply(3);
+              System.out.println("factorial of 3 = " + result);
+          }
+      }
+  </textarea>
 </body>
 </html>
