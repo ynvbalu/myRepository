@@ -55,5 +55,10 @@ public class MySpringAjaxQuery {
   public ModelAndView java_tools_remember() {
     return new ModelAndView("java-tools-remember");
   }
+  
+  @RequestMapping("/sqa")
+  public ModelAndView testing_qa_spring() {
+    return new ModelAndView("testing_qa_spring");
+  }
 
 }
