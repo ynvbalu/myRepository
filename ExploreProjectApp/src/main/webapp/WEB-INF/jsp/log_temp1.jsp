@@ -58,6 +58,7 @@ table td.absorbing-column {
 
       <tr class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
         <td>${loop.index}</td>
+        <%-- <td>/*${loop.index}*/${valueWithOutSpace}</td> --%>
         <td>${valueWithOutSpace}</td>
       </tr>
     </c:forEach>
