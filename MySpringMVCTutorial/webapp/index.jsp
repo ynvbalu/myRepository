@@ -32,6 +32,7 @@
         <a href="sqa.html">Spring QA</a><br><br>
         <a href="jee1.html">How to go about designing a medium size JEE application</a><br><br>
         <a href="tool.html">Pre interview refresher on productivity & debugging tools for Java developers</a><br><br>
+        <a href="lamda.html">Java 8 Streams, lambdas, intermediate vs terminal ops, and lazy loading with simple examples</a><br><br>
       </h6>
   </div>
 </body>

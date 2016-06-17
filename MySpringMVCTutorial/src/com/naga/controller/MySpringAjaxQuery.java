@@ -60,5 +60,10 @@ public class MySpringAjaxQuery {
   public ModelAndView testing_qa_spring() {
     return new ModelAndView("testing_qa_spring");
   }
+  
+  @RequestMapping("/lamda")
+  public ModelAndView java_8_streams_lambdas_intermediate_vs_terminal_ops_lazy_loading_simple_examples() {
+    return new ModelAndView("java-8-streams-lambdas-intermediate-vs-terminal-ops-lazy-loading-simple-examples");
+  }
 
 }
