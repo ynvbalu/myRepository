@@ -1,0 +1,38 @@
+2016-06-22 10:55:56.455 ERROR 9388 --- [nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.OutOfMemoryError: Java heap space] with root cause
+
+java.lang.OutOfMemoryError: Java heap space
+        at java.util.Arrays.copyOfRange(Arrays.java:3664) ~[na:1.8.0_91]
+        at java.lang.String.<init>(String.java:207) ~[na:1.8.0_91]
+        at java.io.BufferedReader.readLine(BufferedReader.java:356) ~[na:1.8.0_91]
+        at java.io.BufferedReader.readLine(BufferedReader.java:389) ~[na:1.8.0_91]
+        at java.nio.file.Files.readAllLines(Files.java:3205) ~[na:1.8.0_91]
+        at java.nio.file.Files.readAllLines(Files.java:3242) ~[na:1.8.0_91]
+        at com.app.service.QueryServiceImpl.getNumberOfLinesInTheLog(QueryServiceImpl.java:77) ~[classes/:na]
+        at com.app.controller.QueryController.getQueriesFromLogFile(QueryController.java:98) ~[classes/:na]
+        at com.app.controller.QueryController.readQueriesAndBindingValuesFromLogFile(QueryController.java:63) ~[classes/:na]
+        at sun.reflect.GeneratedMethodAccessor59.invoke(Unknown Source) ~[na:na]
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_91]
+        at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_91]
+        at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221) ~[spring-web-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:114) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.3.jar:8.5.3]
+        at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165) ~[tomcat-embed-core-8.5.3.jar:8.5.3]
+        at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+        at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.1.BUILD-SNAPSHOT.jar:4.3.1.BUILD-SNAPSHOT]
+
+        
+        
