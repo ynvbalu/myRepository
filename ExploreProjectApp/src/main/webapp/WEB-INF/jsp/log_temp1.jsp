@@ -1,52 +1,28 @@
 <!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-<html lang="en">
-
+<html>
 <head>
-<style>
-body {
-  white-space: pre;
-}
-
-table {
-  table-layout: auto;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-/* tr.even { background: red; }
-tr.odd { background: white; } */
-table td {
-  border: 1px solid #ccc;
-  vertical-align: top;
-  color: green;
-  border-color: maroon;
-}
-
-table td.absorbing-column {
-  width: 100%;
-}
-</style>
+<title>Queries</title>
 </head>
-
 <body>
-  <table>
-    <%-- <tr>
-      <td>No</td>
-      <td><marquee direction="left" scrolldelay="85">${startUpMessage}</marquee></td>
-      <td>${startUpMessage}</td>
-    </tr> --%>
-    <tr>
-      <td width="8">No</td>
-      <td>Query &nbsp&nbsp<a href="/downloadExcel/${name}"> Export to Excel</a> &nbsp&nbsp<a
-          href="/downloadPDF/${name}"> Export to PDF</a> <a href="/downloadText/${name}"> Export to File</a>
-      </td>
-    </tr>
-    <c:forEach var="valueFromTheLists" items="${finalOutput}" varStatus="loop">
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <td colspan="4"><a href="/downloadExcel/${name}"> Export to Excel</a> &nbsp&nbsp<a
+          href="/downloadPDF/${name}"> Export to PDF</a> <a href="/downloadText/${name}"> Export to File</a></td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="4">&copy; 2016 - 2019</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td colspan="4">
+         <c:forEach var="valueFromTheLists" items="${finalOutput}" varStatus="loop">
 
       <c:set var="valueWithOutSpace" value="${fn:replace(valueFromTheLists, 'and', '<br>and')}" />
       <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'AND', '<br>AND')}" />
@@ -56,12 +32,11 @@ table td.absorbing-column {
         <c:set var="valueWithOutSpace" value="${fn:replace(valueWithOutSpace, 'values (', '<br>values (')}" />
       </c:if>
 
-      <tr class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
-        <td>${loop.index}</td>
-        <%-- <td>/*${loop.index}*/${valueWithOutSpace}</td> --%>
-        <td>${valueWithOutSpace}</td>
-      </tr>
+     <p> <font color="black">/*(${loop.index})*/</font><font color="blue">${valueWithOutSpace}</font></p>
     </c:forEach>
+      </td>
+      </tr>
+    </tbody>
   </table>
 </body>
 </html>
