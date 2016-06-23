@@ -45,6 +45,10 @@
 
         <a href="hashmap-and-how-it-works.html">How HashMap works</a>
         <br> <br>
+        
+        <a href="finding-the-missing-numbers-java-example.html">Finding the missing number</a>
+        <br> <br>
+        
       </h6>
   </div>
   <div align="left"><u>Java Developer Training on 16 Tech Key Areas</u></div>

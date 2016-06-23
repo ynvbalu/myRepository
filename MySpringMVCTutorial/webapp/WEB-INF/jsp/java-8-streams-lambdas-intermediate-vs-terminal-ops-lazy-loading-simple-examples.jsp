@@ -33,8 +33,8 @@
 
   <p></p>
   <p>
-    The <strong>stream() </strong>is a default method added to the <strong>Collection&lt;T&gt;</strong>interface in
-    Java 8. The stream() returns a java.util.stream.<strong>Stream&lt;T&gt; </strong> interface with multiple abstract
+    The <strong>stream() </strong>is a default method added to the <strong>Collection&lt;T&gt;</strong>interface in Java
+    8. The stream() returns a java.util.stream.<strong>Stream&lt;T&gt; </strong> interface with multiple abstract
     methods like filter, map, sorted, collect, etc. The <strong>DelegatingStream&lt;T&gt;</strong> is the implementing
     class.
   </p>
@@ -60,9 +60,34 @@
     5.
   </p>
   <div style="width: 879px">
-    <img src="./images/java8_stream.png" width="869" height="357"
-      sizes="(max-width: 869px) 100vw, 869px">
+    <img src="./images/java8_stream.png" width="869" height="357" sizes="(max-width: 869px) 100vw, 869px">
     <p align="center">Java 8 Stream</p>
   </div>
+
+  <textarea rows="15" cols="110" readonly="readonly">
+  import java.util.Arrays;
+  import java.util.List;
+  import java.util.stream.Collectors;
+  public class Java8LambdaDebug {
+      public static void main(String[] args) {
+          List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10, 6);// 6 is repeated
+          list.stream()
+            .filter(i -> i % 3 == 0) //multiples of 3
+            .peek(i -> System.out.println("Debug pt1: " + i))
+            .filter(i -> i < 7)
+            .peek(i -> System.out.println("Debug pt2: " + i))
+            .collect(Collectors.toSet()) // remove duplicates i.e 6
+            .forEach(i -> System.out.println("result: " + i));
+      }
+  }
+  </textarea>
+  <p>
+    In the above example, filter and peek are <u>intermediate</u> operations that return a &#8220;Stream&lt;T&gt;&#8221;
+    object. The &#8220;peek&#8221; is used for <strong>debugging</strong>. The &#8220;collect(&#8230;)&#8221; is a
+    terminal operation that returns a &#8220;Collection&lt;T&gt;&#8221; object, which extends
+    &#8220;Iterable&lt;T&gt;&#8221;interface which has the &#8220;forEach(&#8230;)&#8221; method. Don&#8217;t confuse
+    this with the &#8220;forEach()&#8221; method in the &#8220;java.util.stream.Stream&lt;T&gt;&#8221;.
+  </p>
+  <p></p>
 </body>
 </html>

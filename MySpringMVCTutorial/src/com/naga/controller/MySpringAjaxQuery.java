@@ -70,4 +70,9 @@ public class MySpringAjaxQuery {
   public ModelAndView test1() {
     return new ModelAndView("hashmap-and-how-it-works");
   }
+  
+  @RequestMapping("/finding-the-missing-numbers-java-example")
+  public ModelAndView test2() {
+    return new ModelAndView("finding-the-missing-numbers-java-example");
+  }
 }
