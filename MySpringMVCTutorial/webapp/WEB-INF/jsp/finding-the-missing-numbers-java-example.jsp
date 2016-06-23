@@ -12,11 +12,16 @@
   <p>
     <b>Solution 1: Assuming that the given numbers are in order </b>
   </p>
-  
-   <div style="width: 860px">
+
+  <div style="width: 860px">
     <img src="./images/missing.png" width="850" height="445" sizes="(max-width: 850px) 100vw, 850px">
     <p align="center">Finding the missing number</p>
   </div>
   <a href="#">MissingNumberExOne.java</a>
+  <p>The above solution assumes that the numbers are in order (i.e. sorted). What if the numbers are random?</p>
+  <p>
+    <b>Solution 2: Numbers are added randomly. </b>
+  </p>
+  <a href="#">MissingNumber.java</a>
 </body>
 </html>
