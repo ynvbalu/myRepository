@@ -60,6 +60,7 @@ public class QueryController {
   @RequestMapping("/log")
   public String readQueriesAndBindingValuesFromLogFile(@RequestParam String name, Map<String, Object> model,
       HttpServletRequest request) throws Exception {
+    model.put("name", name);
     List<String> finalOutput = getQueriesFromLogFile(name, request);
     model.put("finalOutput", finalOutput);
     // finalOutput.forEach(line -> System.out.println(line));

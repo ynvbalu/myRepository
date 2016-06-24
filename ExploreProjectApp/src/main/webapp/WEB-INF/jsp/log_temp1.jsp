@@ -11,8 +11,7 @@
     <thead>
       <tr>
         <td colspan="4"><font color="blue">/********<a href="/downloadExcel/${name}"> Export to Excel</a>
-            &nbsp&nbsp<a href="/downloadPDF/${name}"> Export to PDF</a> <a href="/downloadText/${name}"> Export to
-              File</a>*****/
+            &nbsp&nbsp<a href="/downloadPDF/${name}"> Export to PDF</a> *****/
         </font></td>
       </tr>
     </thead>
