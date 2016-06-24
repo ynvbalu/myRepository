@@ -16,9 +16,11 @@ http://www.java-success.com/%E2%99%A6-how-to-go-about-designing-a-medium-size-je
 http://www.java-success.com/java-tools-remember/
 http://www.java-success.com/category/interview/testing-qa/
 http://www.java-success.com/java-8-streams-lambdas-intermediate-vs-terminal-ops-lazy-loading-simple-examples/
+http://www.java-success.com/finding-the-missing-numbers-java-example/
 
 Inprogress : 
-http://www.java-success.com/finding-the-missing-numbers-java-example/
+
+
 
 
 TODO :
@@ -37,3 +39,7 @@ http://www.java-success.com/10-%E2%99%A6-executorservice-vs-forkjoin-future-vs-c
 AMBICA:
 InProgress:
 http://www.java-success.com/hashmap-and-how-it-works/
+
+
+good ones:
+http://javarevisited.blogspot.com/2016/06/10-examples-of-joining-string-in-java-8.html

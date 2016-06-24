@@ -57,8 +57,8 @@ public class QueryController {
     return "queries";
   }
 
-  @RequestMapping("/log/{name}")
-  public String readQueriesAndBindingValuesFromLogFile(@PathVariable String name, Map<String, Object> model,
+  @RequestMapping("/log")
+  public String readQueriesAndBindingValuesFromLogFile(@RequestParam String name, Map<String, Object> model,
       HttpServletRequest request) throws Exception {
     List<String> finalOutput = getQueriesFromLogFile(name, request);
     model.put("finalOutput", finalOutput);
