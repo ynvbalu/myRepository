@@ -4,7 +4,7 @@ import static com.app.constants.Constants.*;
 import static org.apache.commons.lang3.StringUtils.contains;
 import static org.apache.commons.lang3.StringUtils.join;
 
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -16,6 +16,7 @@ import javax.servlet.http.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.excel.ExcelBuilder;
@@ -25,32 +26,10 @@ import com.app.service.QueryService;
 @Controller
 public class QueryController {
 
-  @Value("${application.message:Hello World}")
-  private String message = "Hello World";
-
   private DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
   @Inject
   private QueryService queryService;
-
-  @RequestMapping("/")
-  public String welcome(Map<String, Object> model) {
-    model.put("time", new Date());
-    model.put("message", this.message);
-    return "welcome";
-  }
-
-  @RequestMapping("/foo")
-  public String foo() {
-    throw new RuntimeException("Foo");
-  }
-
-  @RequestMapping("/test")
-  public String test(Map<String, Object> model) {
-    model.put("time", new Date());
-    model.put("message", this.message);
-    return "test";
-  }
 
   @RequestMapping("/queries")
   public String queries() {
@@ -81,26 +60,19 @@ public class QueryController {
     HttpSession httpSession = request.getSession();
     String BASE_LOCATION = LOG_LOC_1;
 
-    if (contains(name, "log4j")) {
-      BASE_LOCATION = LOG_LOC_2;
-      readFromThatLine = 0;
-    }
-
     if (contains(name, LOG)) {
       location = join(BASE_LOCATION, name);
     } else {
       location = join(BASE_LOCATION, name, LOG);
     }
 
-    if (!contains(name, "log4j")) {
-      Integer numberOfLines = (Integer) httpSession.getAttribute("numberOfLines");
-      if (numberOfLines == null) {
-        readFromThatLine = 0;
-        httpSession.setAttribute("numberOfLines", queryService.getNumberOfLinesInTheLog(location));
-      } else {
-        readFromThatLine = numberOfLines;
-        httpSession.setAttribute("numberOfLines", queryService.getNumberOfLinesInTheLog(location));
-      }
+    Integer numberOfLines = (Integer) httpSession.getAttribute("numberOfLines");
+    if (numberOfLines == null) {
+      readFromThatLine = 0;
+      httpSession.setAttribute("numberOfLines", queryService.getNumberOfLinesInTheLog(location));
+    } else {
+      readFromThatLine = numberOfLines;
+      httpSession.setAttribute("numberOfLines", queryService.getNumberOfLinesInTheLog(location));
     }
 
     finalOutput = queryService.getFormattedQueriesWithBindingValues(location, readFromThatLine);
@@ -176,23 +148,6 @@ public class QueryController {
     model.put("finalOutput", finalOutput);
 
     return "search";
-  }
-
-  @Value("${property.one}")
-  public String propertyOne;
-
-  @Value("${property.two}")
-  public String propertyTwo;
-
-  @Value("${property.three}")
-  private String propertyThree;
-
-  @PostConstruct
-  public void postConstruct() {
-    System.out.println("Property One: " + propertyOne);
-    System.out.println("Property Two: " + propertyTwo);
-    System.out.println("Property Three: " + propertyThree);
-    // System.out.println("location: " + loc);
   }
 
   @RequestMapping("/error/{name}")

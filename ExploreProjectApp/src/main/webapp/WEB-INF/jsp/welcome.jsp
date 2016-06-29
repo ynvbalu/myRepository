@@ -49,14 +49,15 @@
 
 <body>
 
-  <form action="/log">
-    <input type="input" name="name">
-   <input type="submit" id="submit" name="submit" class="button" onclick="ShowProgressAnimation();">
-  </form>
+  <form method="POST" action="uploadFile.html" enctype="multipart/form-data">
+    File to upload: <input type="file" name="file">
+    <input type="submit" id="submit" name="submit" class="button" onclick="ShowProgressAnimation();"> 
+  </form> 
   
   <div id="loading-div-background">
   <div id="loading-div" class="ui-corner-all">
-    <img style="height:32px;width:32px;margin:30px;" src="./images/loading.gif" alt="Loading.."/><br>PROCESSING. PLEASE WAIT...
+    <img style="height:32px;width:32px;margin:30px;" src="./images/loading.gif" alt="Loading.."/>
+    <br>PROCESSING. PLEASE WAIT...
   </div>
 </div>
   
@@ -75,7 +76,10 @@
   <a href="/error/xxxxx.log/"> Find Errors</a>
   <br>
   <a href="/ajax.html"> Ajax Call</a>
-
+  <form action="/log">
+    <input type="input" name="name">
+   <input type="submit" id="submit" name="submit" class="button" onclick="ShowProgressAnimation();">
+  </form>
 </body>
 
 </html>
