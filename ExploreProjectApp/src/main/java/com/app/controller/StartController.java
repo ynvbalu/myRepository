@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StartController {
@@ -48,5 +49,10 @@ public class StartController {
     System.out.println("Property Two: " + propertyTwo);
     System.out.println("Property Three: " + propertyThree);
     // System.out.println("location: " + loc);
+  }
+  
+  @RequestMapping("/ajax")
+  public ModelAndView sayHello() {
+    return new ModelAndView("ajax", "message", "Spring MVC with Ajax and JQuery Demo..");
   }
 }

@@ -169,11 +169,6 @@ public class QueryController {
     return "error";
   }
 
-  @RequestMapping("/ajax")
-  public ModelAndView sayHello() {
-    return new ModelAndView("ajax", "message", "Spring MVC with Ajax and JQuery Demo..");
-  }
-
   @RequestMapping(value = "/log/ajax/{name}", method = RequestMethod.GET)
   public @ResponseBody List<String> readQueriesAndBindingValuesFromLogFileWithAjax(@PathVariable String name)
       throws Exception {
