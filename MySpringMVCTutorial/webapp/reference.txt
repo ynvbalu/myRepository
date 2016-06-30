@@ -20,11 +20,18 @@ http://www.java-success.com/finding-the-missing-numbers-java-example/
 
 Inprogress : 
 
-
+http://www.java-success.com/why-use-java-and-java-overview-interview-questions-and-answers/
 
 
 TODO :
 
+http://www.java-success.com/java-architecture-interview-qa-architecture-diagrams-part-2/
+http://www.java-success.com/scenarios-java-multithreading-interview-questions/
+http://www.java-success.com/erd-entity-relationship-diagrams-interview-questions-and-answers/
+http://www.java-success.com/erd-entity-relationship-diagrams-interview-questions-and-answers/
+http://www.java-success.com/11-tips-writing-low-latency-real-time-applications-java-2/
+http://javaconceptoftheday.com/final-keyword-in-java/
+http://www.java-success.com/java-fp-lambda-expressions-examples-will-used-real-life/
 http://www.java-success.com/debugging-linkageerrors-in-java/
 http://www.java-success.com/debugging-java-security-cert-certificateexception-certificates-does-not-conform-to-algorithm-constraints/
 http://www.java-success.com/sonarcube-tutorial-for-java-developers/

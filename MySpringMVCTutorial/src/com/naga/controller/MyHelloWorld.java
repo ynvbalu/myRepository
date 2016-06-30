@@ -16,4 +16,9 @@ public class MyHelloWorld {
 
     return new ModelAndView("welcome", "message", message);
   }
+  
+  @RequestMapping("/introduction-to-spring-boot")
+  public ModelAndView test3() {
+    return new ModelAndView("introduction-to-spring-boot");
+  }
 }
