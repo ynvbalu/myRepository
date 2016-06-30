@@ -43,3 +43,4 @@ http://www.java-success.com/hashmap-and-how-it-works/
 
 good ones:
 http://javarevisited.blogspot.com/2016/06/10-examples-of-joining-string-in-java-8.html
+http://www.journaldev.com/644/inheritance-in-java-example

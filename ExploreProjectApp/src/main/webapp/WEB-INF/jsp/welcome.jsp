@@ -50,8 +50,8 @@
 <body>
 
   <form method="POST" action="uploadFile.html" enctype="multipart/form-data">
-    File to upload: <input type="file" name="file">
-    <input type="submit" id="submit" name="submit" class="button" onclick="ShowProgressAnimation();"> 
+    <input type="file" name="file">
+    <input type="submit" id="submit" name="submit" class="button" onclick="ShowProgressAnimation();">
   </form> 
   
   <div id="loading-div-background">
@@ -65,9 +65,7 @@
   <br>
   <a href="/queries">Query Templates</a>
   <br>
-  <a href="/log/log4j">log4j queries</a>
-  <br>
-  <a href="/startup/TEST_2016-04-13_11_58.log"> hibernate startup queries</a>
+    <a href="/startup/TEST_2016-04-13_11_58.log"> hibernate startup queries</a>
   <br>
   <a href="/log/xxxxxx.log"> Current queries</a>
   <br>
