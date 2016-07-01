@@ -17,5 +17,16 @@
     <url-pattern>/welcome.html</url-pattern>
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
-
+   
+    <!-- In favor for annotation
+      <servlet>
+        <servlet-name>hello-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>hello-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+      </servlet-mapping>
+        -->
 </web-app>
