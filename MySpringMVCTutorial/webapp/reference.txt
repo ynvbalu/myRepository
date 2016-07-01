@@ -1,3 +1,10 @@
+pending things :
+from 28 - Interfaces complete to till end
+
+https://github.com/caveofprogramming/java-beginners
+
+
+
 // http://www.codejava.net/frameworks/spring/spring-web-mvc-with-pdf-view-example-using-itext-5x
 
 http://www.java-success.com/jvisualvm-to-sample-java-memory/
