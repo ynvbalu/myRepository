@@ -24,6 +24,7 @@ http://www.java-success.com/why-use-java-and-java-overview-interview-questions-a
 
 
 TODO :
+http://www.journaldev.com/8611/spring-boot-framework-ina-nutshell
 
 http://www.java-success.com/java-architecture-interview-qa-architecture-diagrams-part-2/
 http://www.java-success.com/scenarios-java-multithreading-interview-questions/
