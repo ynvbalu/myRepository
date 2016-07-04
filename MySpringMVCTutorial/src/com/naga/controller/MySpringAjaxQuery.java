@@ -75,4 +75,9 @@ public class MySpringAjaxQuery {
   public ModelAndView test2() {
     return new ModelAndView("finding-the-missing-numbers-java-example");
   }
+  
+  @RequestMapping("/jee-overview-interview-questions-and-answers")
+  public ModelAndView test3() {
+    return new ModelAndView("jee-overview-interview-questions-and-answers");
+  }
 }
