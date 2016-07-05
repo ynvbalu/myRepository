@@ -1,4 +1,4 @@
-package com.naga.controller;
+package com.inmemoryDb.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.naga.dao.UserDao;
-import com.naga.model.User;
+import com.inmemoryDb.dao.UserDao;
+import com.inmemoryDb.model.User;
 
 @Controller
 public class WelcomeController {

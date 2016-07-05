@@ -1,4 +1,4 @@
-package com.naga.model;
+package com.inmemoryDb.model;
 public class User {
 
 	Integer id;

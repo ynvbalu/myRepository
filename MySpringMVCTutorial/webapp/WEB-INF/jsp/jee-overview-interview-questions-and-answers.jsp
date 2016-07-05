@@ -91,7 +91,7 @@
 	</p>
 
 	<div style="width: 708px">
-		<img src="./images/cj1.png" width="699" height="753"
+		<img src="./images/sri.png" width="699" height="753"
 			sizes="(max-width: 699px) 100vw, 699px">
 		<p align="center">JEE big picture</p>
 		<h4>1) JEE APIs like</h4>

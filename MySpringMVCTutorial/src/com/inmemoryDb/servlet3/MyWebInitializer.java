@@ -1,23 +1,24 @@
-package com.naga.servlet3;
+package com.inmemoryDb.servlet3;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.naga.config.SpringRootConfig;
-import com.naga.config.SpringWebConfig;
+import com.inmemoryDb.config.SpringRootConfig;
+import com.inmemoryDb.config.SpringWebConfig;
 
-public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MyWebInitializer //extends AbstractAnnotationConfigDispatcherServletInitializer
+{/*
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { SpringRootConfig.class };
+		return null;//new Class[] { SpringRootConfig.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { SpringWebConfig.class };
+		return null;//new Class[] { SpringWebConfig.class };
 	}
 
 	@Override
@@ -31,4 +32,4 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 		servletContext.setInitParameter("spring.profiles.active", "hsql");
 	}
 
-}
+*/}

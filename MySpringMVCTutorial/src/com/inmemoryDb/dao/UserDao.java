@@ -1,8 +1,8 @@
-package com.naga.dao;
+package com.inmemoryDb.dao;
 
 import java.util.List;
 
-import com.naga.model.User;
+import com.inmemoryDb.model.User;
 
 public interface UserDao {
 

@@ -1,4 +1,4 @@
-package com.naga.dao;
+package com.inmemoryDb.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.naga.model.User;
+import com.inmemoryDb.model.User;
 
 @Repository
 public class UserDaoImpl implements UserDao {

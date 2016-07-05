@@ -1,4 +1,4 @@
-package com.naga.config;
+package com.inmemoryDb.config;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
@@ -25,7 +25,7 @@ public class SpringRootConfig {
 	public void startDBManager() {
 		
 		//hsqldb
-		DatabaseManagerSwing.main(new String[] { "--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", "" });
+		//DatabaseManagerSwing.main(new String[] { "--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", "" });
 
 		//derby
 		//DatabaseManagerSwing.main(new String[] { "--url", "jdbc:derby:memory:testdb", "--user", "", "--password", "" });

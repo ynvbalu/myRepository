@@ -1,4 +1,4 @@
-package com.naga.dao;
+package com.inmemoryDb.dao;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-import com.naga.model.User;
+import com.inmemoryDb.model.User;
 
 public class UserDaoTest {
 
