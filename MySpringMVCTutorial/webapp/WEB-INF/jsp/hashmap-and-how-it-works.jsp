@@ -34,5 +34,25 @@
 		<span style="font-size: large; color: brown;">Backing Array
 			with buckets:</span> as shown below.
 	</p>
+	......................................................
+
+	<p>
+		<strong>1) </strong>When you put an object into a map with a key and a
+		value, <strong>hashCode()</strong> method is implicitly invoked, and
+		hash code value say 123 is returned. Two different keys can return the
+		same hash value. A good hashing algorithm spreads out the numbers. In
+		the above example, let&#8217;s assume that
+		(&#8220;John&#8221;,01/01/1956) key and (&#8220;Peter&#8221;,
+		01/01/1995) key return the same hash value of <strong>123</strong>.
+	</p>
+	<p>
+		<strong>2) </strong>Now when a hashCode value of say 123 is returned
+		and the initial HashMap capacity is say 10, how does it know which
+		index of the backing array to store it in? This is where the HashMap
+		internally invokes the <strong>hash(int )</strong> &#038; <strong>indexFor(int
+			h, int length)</strong> methods. This is known as the <strong>hashing</strong>
+		function. This function in a very simple explanation is like
+	</p>
+	
 </body>
 </html>
