@@ -92,7 +92,8 @@ public class QueryServiceImpl implements QueryService {
   @Override
   public List<String> getFormattedQueriesWithBindingValues(String fileName, Integer readFromThatLine)
       throws IOException {
-    List<String> lines = readAllLines(get(fileName));
+    List<String> lines = Collections.emptyList();
+    lines = readAllLines(get(fileName));
 
     List<String> sqls = addQueriesAndBindingValuesToTheCollection(lines, readFromThatLine);
 
