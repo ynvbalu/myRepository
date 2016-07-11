@@ -1,3 +1,5 @@
 mvn clean
 mvn install
 and deploy in tomcat 8 server
+
+Dont check in the package(com.naga.webservices) 
