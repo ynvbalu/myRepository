@@ -1,0 +1,3 @@
+mvn clean
+mvn install
+and deploy in tomcat 8 server
