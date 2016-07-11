@@ -1,3 +1,7 @@
+it has good stuff see when your mind is free. 
+http://www.codeproject.com/Articles/867391/JAX-WS-Using-Apache-CXF-to-Create-a-Bottom-Up-Web
+
+
 pending things :
 from 28 - Interfaces complete to till end
 
