@@ -343,7 +343,7 @@ with a UDDI and make themselves available through it for discovery
 
 
             <div style="width: 968px">
-              <img src="./images/Capture.PNG" width="968" height="669" sizes="(max-width: 968px) 100vw, 968px">
+              <img src="./images/Capture.PNG" border="1" width="968" height="669" sizes="(max-width: 968px) 100vw, 968px">
               <p>SOAP vs REST</p>
             </div>
 
@@ -365,7 +365,7 @@ with a UDDI and make themselves available through it for discovery
                       <li>Service provider</li>
                     </ul>
                     <div style="clear: both; text-align: left;">
-                      <img alt="SOAP web service tutorial" border="0" src="./images/SOAPWordPlane.jpg" title="" />
+                      <img alt="SOAP web service tutorial" border="1" src="./images/SOAPWordPlane.jpg" title="" />
                     </div>
                     <br />
                     <ul style="text-align: left;">
@@ -401,7 +401,7 @@ with a UDDI and make themselves available through it for discovery
                         provide its wsdl to client and client will be able to access web service.</li>
                     </ul>
                     <div style="clear: both; text-align: left;">
-                      <img alt="SOAP web services direct communication" border="0" src="./images/SOAPWordOneLevel.jpg"
+                      <img alt="SOAP web services direct communication" border="1" src="./images/SOAPWordOneLevel.jpg"
                         title="" />
                     </div>
                     <br />
@@ -425,7 +425,86 @@ with a UDDI and make themselves available through it for discovery
                     </ul>
 
                     <div style="clear: both; text-align: left;">
-                        <img alt="SOAP web services indirect communication using UDDI" border="0"
-                          src="./images/SOAPWordUDDIDiagram.jpg"
-                          title="" />
+                      <img alt="SOAP web services indirect communication using UDDI" border="1"
+                        src="./images/SOAPWordUDDIDiagram.jpg" title="" />
                     </div>
+
+                    <div>
+                      <h1>RESTful web service tutorial</h1>
+                      <div>
+                        <div>
+                          <div dir="ltr" style="text-align: left;" trbidi="on">
+                            In this post,we will see RESTful web service introduction.<br />
+                            <br /> REST is an architectural style which was brought in by Roy Fielding in 2000 in his
+                            doctoral thesis.<br /> <br /> In the web services terms, REpresentational State Transfer
+                            (REST) is&nbsp; a stateless client-server architecture in which the web services are viewed
+                            as resources and can be identified by their URIs. Web service clients that want to use these
+                            resources access via globally defined set of remote methods that describe the action to be
+                            performed on the resource. <br /> <br /> It consists of two components REST server which
+                            provides access to the resources and a REST client which accesses and modify the REST
+                            resources.<br /> <br /> In the REST architecture style, clients and servers exchange
+                            representations of resources by using a standardized interface and protocol. REST isn't
+                            protocol specific, but when people talk about REST they usually mean REST over HTTP.<br />
+                            
+                            The response from server is considered as the representation of the resources. This
+                            representation can be generated from one resource or more number of resources. <br /> <br />
+                            <div style="clear: both; text-align: left;">
+                                <img border="1"
+                                  src="./images/RestfuArchitecture.jpg" />
+                            </div>
+                            <br /> REST allows that resources have different representations, e.g.xml, json etc. The
+                            rest client can ask for specific representation via the HTTP protocol. <br />
+                            <h3 style="text-align: left;">HTTP methods :&nbsp;</h3>
+                            RESTful web services use HTTP protocol methods for the operations they perform.Methods are:<br />
+                            <ul style="text-align: left;">
+                              <li><b>GET</b>:It defines a reading access of the resource without side-effects.This
+                                operation is idempotent i.e.they can be applied multiple times without changing the
+                                result</li>
+                              <li><b>PUT</b> :&nbsp; It is generally used for updating resouce.It must also be
+                                idempotent.</li>
+                              <li><b>DELETE </b>: It removes the resources. The operations are idempotent i.e. they
+                                can get repeated without leading to different results.</li>
+                              <li><b>POST</b> :It is used for creating a new resource. It is not idempotent.</li>
+                            </ul>
+                            <div>
+                              <div style="text-align: justify;">
+                                <b>Idempotent</b>&nbsp;means result of multiple successful request will not change state
+                                of resource after initial application
+                              </div>
+                              <div style="text-align: justify;">For example :&nbsp;</div>
+                              <div style="text-align: justify;">Delete is idempotent method because when you first
+                                time use delete, it will delete the resource (initial application) but after that, all
+                                other request will have no result because resource is already deleted.</div>
+                              <div style="text-align: justify;">
+                                <br />
+                              </div>
+                              <div style="text-align: justify;">Post is not idempotent method because when you use
+                                post to create resource , it will keep creating resource for each new request, so result
+                                of multiple successful request will not be same.</div>
+                            </div>
+                            <h3 style="text-align: left;">Features of RESTful web services:</h3>
+                            <div style="text-align: left;">
+                              <b>Resource identification through URI</b>:Resources are identified by their URIs
+                              (typically links on internet). So, a client can directly access a RESTful Web Services
+                              using the URIs of the resources (same as you put a website address in the browser&#8217;s
+                              address bar and get some representation as response).<br /> <br />
+                            </div>
+                            <b>Uniform interface</b>: Resources are manipulated using a fixed set of four create, read,
+                            update, delete operations: PUT, GET, POST, and DELETE.<br /> <br /> <b>Client-Server</b>:
+                            A clear separation concerns is the reason behind this constraint. Separating concerns
+                            between the Client and Server helps improve portability in the Client and Scalability of the
+                            server components.<br /> <br /> <b>Stateless</b>: each request from client to server must
+                            contain all the information necessary to understand the request, and cannot take advantage
+                            of any stored context on the server.<br /> <br /> <b>Cache</b>: to improve network
+                            efficiency responses must be capable of being labeled as cacheable or non-cacheable.<br />
+                            <br /> <b>Named resources</b> - the system is comprised of resources which are named using
+                            a URL.<br /> <br /> <b>Interconnected resource representations</b> - the representations
+                            of the resources are interconnected using URLs, thereby enabling a client to progress from
+                            one state to another.<br /> <br /> <b>Layered components</b> - intermediaries, such as
+                            proxy servers, cache servers, gateways, etc, can be inserted between clients and resources
+                            to support performance, security, etc.<br /> <br /> <b>Self-descriptive messages</b>:
+                            Resources are decoupled from their representation so that their content can be accessed in a
+                            variety of formats, such as HTML, XML, plain text, PDF, JPEG, JSON, and others.&nbsp; <br />
+                            <br /> 
+                          </div>
+                        </div>
