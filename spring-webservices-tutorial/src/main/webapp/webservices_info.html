@@ -1,0 +1,431 @@
+<div style="text-align: left;">In this post, we will see introduction to web services and some jargons of web
+  services.</div>
+<h2 style="text-align: left;">Web service Tutorial Content:</h2>
+<br />
+Web service is a way of communication that allows interoperability between different applications on different
+platforms, for example, a java based application on Windows can communicate with a .Net based one on Linux. The
+communication can be done through a set of XML messages over HTTP protocol.
+<br />
+<br />
+Web services are browsers and operating system independent service, which means it can run on any browser without the
+need of making any changes. Web Services take Web-applications to the Next Level.
+<br />
+<br />
+The World Wide Web Consortium (W3C) has defined the web services. According to W3C, &#8220;Web Services are the
+message-based design frequently found on the Web and in enterprise software. The Web of Services is based on
+technologies such as HTTP, XML, SOAP, WSDL, SPARQL, and others.&#8221;
+<br />
+<!-- adsense -->
+Lets say,you are a java developer and&nbsp; you can publish your functions on internet or lan through java web service
+so any other developer(lets say .Net developer) can access your function.
+<br />
+<br />
+<h3 style="text-align: left;">Why you need to learn web services:</h3>
+<div style="text-align: left;">
+  <h4 style="text-align: left;">Reuse already developed(old) functionality into new software:</h4>
+  Lets understand with very simple example.Lets say you are developing a finance software for a company on java and you
+  have old .net software which manages salary of employees.So rather then developing new software for employee part,you
+  can use old software and for other parts like infrastructure you can develop your own functionalities.<br />
+  <div style="text-align: left;">
+    <h4 style="text-align: left;">Usability :</h4>
+  </div>
+  Web Services allow the business logic of many different systems to be exposed over the Web. This gives your
+  applications the freedom to chose the Web Services that they need. Instead of re-inventing the wheel for each client,
+  you need only include additional application-specific business logic on the client-side. This allows you to develop
+  services and/or client-side code using the languages and tools that you want.<br />
+  <h4 style="text-align: left;"></h4>
+  <h4 style="text-align: left;">Interoperability :</h4>
+  <div style="text-align: left;">This is the most important benefit of Web Services. Web Services typically work
+    outside of private networks, offering developers a non-proprietary route to their solutions.Web Services also let
+    developers use their preferred programming languages. In addition, thanks to the use of standards-based
+    communications methods, Web Services are virtually platform-independent.</div>
+  <h4 style="text-align: left;">Loosely Coupled:</h4>
+  Each service exists independently of the other services that make up the application. Individual pieces of the
+  application to be modified without impacting unrelated areas.<br />
+  <h4 style="text-align: left;">Ease of Integration:</h4>
+  Data is isolated between applications creating &#8217;silos&#8217;. Web Services act as glue between these and enable
+  easier communications within and across organisations.
+</div>
+<div style="text-align: left;"></div>
+<h4 style="text-align: left;">Deployability :</h4>
+Web Services are deployed over standard Internet technologies. This makes it possible to deploy Web Services even over
+the fire wall to servers running on the Internet on the other side of the globe. Also thanks to the use of proven
+community standards, underlying security (such as SSL) is already built-in.
+<br />
+<div style="text-align: left;"></div>
+<br />
+<h3 style="text-align: left;">Some jargons used in Web services:</h3>
+<h4 style="text-align: left;">Simple Object Access Protocol(SOAP):</h4>
+<div style="text-align: left;">SOAP is a protocol specification for exchanging structured information in the
+  implementation of Web services in computer networks. It relies on XML as its message format.</div>
+<h4 style="text-align: left;"></h4>
+<h4 style="text-align: left;">
+  <b>Web Service Description Language(WSDL)</b>:
+</h4>
+WSDL stands for Web Service Description Language. It is an XML file that describes
+<br />
+the technical details of how to implement a web service, more specifically the URI,
+<br />
+port, method names, arguments, and data types. Since WSDL is XML, it is both
+<br />
+human-readable and machine-consumable, which aids in the ability to call and bind to
+<br />
+services dynamically.
+<br />
+<br />
+<b>Elements of WSDL are:</b>
+<br />
+<br />
+<b>Description:</b>
+<br />
+It is the root element of a WSDL 2.0 file. It usually contains a set of name space declarations which are used
+throughout the WSDL file.&nbsp;
+<b><br /></b>
+<br />
+<b>Types:</b>
+<br />
+The WSDL types element describes the data types used by your web service.Data types are usually specified by XML
+schema.It can be described in any language as long as your web services API supports it.
+<br />
+<br />
+<b>Binding:</b>
+<br />
+The WSDL binding element describes how your web service is bound to a protocol. In other words, how your web service is
+accessible. To be accessible, the web service must be reachable using some network protocol. This is called "binding"
+the web service to the protocol.
+<br />
+<br />
+<b>Interface:</b>
+<br />
+The WSDL interface element describes the operations supported by your web service.It is similar to methods in
+programming language.Client can only call one opertion per request.&nbsp;
+<br />
+<br />
+<b>Service:</b>
+<br />
+It describes the endpoint of your web service. In other words, the address where the web service can be reached.
+<br />
+<br />
+<b>Endpoint:</b>
+<br />
+The endpoint element describes the address of the web service. The
+<b>endpoint binding</b>
+attribute describes what binding element this endpoint uses.i.e. protocol with which you will access web service. The
+<b>address attribute</b>
+describes the URI at which you can access the service.
+<br />
+<br />
+<b>Message:</b>
+<br />
+The message element describes the data being exchanged between the Web service providers and consumers.
+<br />
+<br />
+Sample WSDL file:
+<br />
+<pre class="xml" name="code">&nbsp;&nbsp; &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;wsdl:definitions targetNamespace="http://webservices.javapostsforlearning.arpit.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservices.javapostsforlearning.arpit.org" xmlns:intf="http://webservices.javapostsforlearning.arpit.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)--&gt;
+ &lt;wsdl:types&gt;
+  &lt;schema elementFormDefault="qualified" targetNamespace="http://webservices.javapostsforlearning.arpit.org" xmlns="http://www.w3.org/2001/XMLSchema"&gt;
+   &lt;element name="sayHelloWorld"&gt;
+    &lt;complexType&gt;
+     &lt;sequence&gt;
+      &lt;element name="name" type="xsd:string"/&gt;
+     &lt;/sequence&gt;
+    &lt;/complexType&gt;
+   &lt;/element&gt;
+   &lt;element name="sayHelloWorldResponse"&gt;
+    &lt;complexType&gt;
+     &lt;sequence&gt;
+      &lt;element name="sayHelloWorldReturn" type="xsd:string"/&gt;
+     &lt;/sequence&gt;
+    &lt;/complexType&gt;
+   &lt;/element&gt;
+  &lt;/schema&gt;
+ &lt;/wsdl:types&gt;
+   &lt;wsdl:message name="sayHelloWorldRequest"&gt;
+      &lt;wsdl:part element="impl:sayHelloWorld" name="parameters"/&gt;
+   &lt;/wsdl:message&gt;
+   &lt;wsdl:message name="sayHelloWorldResponse"&gt;
+      &lt;wsdl:part element="impl:sayHelloWorldResponse" name="parameters"/&gt;
+   &lt;/wsdl:message&gt;
+   &lt;wsdl:portType name="HelloWorld"&gt;
+      &lt;wsdl:operation name="sayHelloWorld"&gt;
+         &lt;wsdl:input message="impl:sayHelloWorldRequest" name="sayHelloWorldRequest"/&gt;
+         &lt;wsdl:output message="impl:sayHelloWorldResponse" name="sayHelloWorldResponse"/&gt;
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:portType&gt;
+   &lt;wsdl:binding name="HelloWorldSoapBinding" type="impl:HelloWorld"&gt;
+      &lt;wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/&gt;
+      &lt;wsdl:operation name="sayHelloWorld"&gt;
+         &lt;wsdlsoap:operation soapAction=""/&gt;
+         &lt;wsdl:input name="sayHelloWorldRequest"&gt;
+            &lt;wsdlsoap:body use="literal"/&gt;
+         &lt;/wsdl:input&gt;
+         &lt;wsdl:output name="sayHelloWorldResponse"&gt;
+            &lt;wsdlsoap:body use="literal"/&gt;
+         &lt;/wsdl:output&gt;
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:binding&gt;
+   &lt;wsdl:service name="HelloWorldService"&gt;
+      &lt;wsdl:port binding="impl:HelloWorldSoapBinding" name="HelloWorld"&gt;
+         &lt;wsdlsoap:address location="http://localhost:8080/SimpleSOAPExample/services/HelloWorld"/&gt;
+      &lt;/wsdl:port&gt;
+   &lt;/wsdl:service&gt;
+&lt;/wsdl:definitions&gt;
+</pre>
+<ul style="text-align: left;"></ul>
+<b>Universal Description, Discovery and Integration(UDDI)</b>
+:
+<br />
+<br />
+UDDI stands for Universal Description, Discovery and Integration.It is a directory service. Web services can register
+with a UDDI and make themselves available through it for discovery
+<br />
+<br />
+<h3 style="text-align: left;">
+  <b>Web service design approaches:</b>
+</h3>
+<div style="text-align: left;">
+  <b>Contract last or Bottom up approach:</b>
+</div>
+<div style="text-align: left;">When using contract last approach,you first write your java code then you create
+  web service contract(WSDL) .There are various kinds of tools which can generate WSDL on the basis of java code.</div>
+<div style="text-align: left;">
+  <b> </b>
+</div>
+<div style="text-align: left;">
+  <b>Contract first or Top Down Approach :</b>
+</div>
+<div style="text-align: left;">It&nbsp; is reverse of contract first.Here you first define web service
+  contract.You define all the elements of WSDL first then after that you create your java logic.</div>
+</div>
+</div>
+
+
+<div>
+  <h1>Top 20 Web services interview questions</h1>
+  <div></div>
+  <div>
+
+    <div>
+      <div dir="ltr" style="text-align: left;" trbidi="on">
+        Web services questions are most asked questions if you are applying for software developer role.<br /> In this
+        post, we will see multiple web services questions.<br />
+        <h4 style="text-align: left;">1. What are web services?</h4>
+        <div>Web services are ways of communication between two application over network. It allows you to expose
+          business logic using API.</div>
+        <div>
+          <b>For example:</b><br /> Lets say you are java developer, you can create web service and expose API over
+          internet and any other developer (lets say .net developer ) can access it.
+        </div>
+        <h4 style="text-align: left;">2. What are features of web services?</h4>
+        <ul style="text-align: left;">
+          <li>Interoperability</li>
+          <li>Reuse already developed(old) functionality into new software:</li>
+          <li>Loosely Coupled&nbsp;</li>
+          <li>Extensibility</li>
+        </ul>
+        <h4 style="text-align: left;">3. What are different types of web services?</h4>
+        <div>
+          <ul style="text-align: left;">
+            <li>SOAP</li>
+            <li>Restful web services</li>
+          </ul>
+          <div>
+            <h4 style="text-align: left;">4. What is SOAP?</h4>
+            SOAP stands for Simple object access protocol. It is protocol to exchange information using request and
+            response in XML format over transport protocol such as HTTP, SMTP etc.<br />
+            <h4 style="text-align: left;">5. What are important components for SOAP?</h4>
+            <div>
+              <ul style="text-align: left;">
+                <li>Simple access object protocol (SOAP)</li>
+                <li>Web Services Description Language (WSDL)</li>
+                <li>Universal Description, Discovery and Integration(UDDI)</li>
+              </ul>
+              <h4 style="text-align: left;">6. What is WSDL?</h4>
+            </div>
+            WSDL stands for Web Service Description Language. It is an XML file that describes the technical details of
+            how to implement a web service, more specifically the URI, port, method names, arguments, and data types.
+            You can understand following details using WSDL <br />
+            <ul style="text-align: left;">
+              <li>&nbsp; &nbsp; Port / Endpoint &#8211; URL of the web service</li>
+              <li>&nbsp;&nbsp;&nbsp; Input message format</li>
+              <li>&nbsp;&nbsp;&nbsp; Output message format</li>
+              <li>&nbsp;&nbsp;&nbsp; Security protocol that needs to be followed</li>
+              <li>&nbsp;&nbsp;&nbsp; Which protocol the web service uses</li>
+            </ul>
+            <h4 style="text-align: left;">7. What is UDDI?</h4>
+          </div>
+        </div>
+        <div>UDDI stands for Universal Description, Discovery and Integration.It is a directory service. Web
+          service provider can register&nbsp;themselves&nbsp;with a UDDI and make themselves available through it for
+          discovery.</div>
+        <div>
+          <h4 style="text-align: left;">8. What is JAX-WS?</h4>
+        </div>
+        <div>
+          JAX-WS stands for Java API for XML Web Services. JAX-WS is standard XML baed java API which is used to create
+          SOAP web services.<br />
+          <h4 style="text-align: left;">9. What are some important annotations for JAX-WS?</h4>
+          <ul>
+            <li>@WebService</li>
+            <li>@WebMethod</li>
+            <li>@SOAPBinding</li>
+          </ul>
+          <div>
+            <h4 style="text-align: left;">10. What do you mean by end point in terms of SOAP?</h4>
+          </div>
+        </div>
+        <div>
+          End point is nothing but URL which other application can use to access it.<br />
+          <div>
+            <b>for example:</b>
+          </div>
+          <div>end &nbsp;point:http://localhost:8080/WS/HelloWorld</div>
+        </div>
+        <div>
+          <h4 style="text-align: left;">11. How can you access WSDL for web service?</h4>
+        </div>
+        <div>You just need to put ?wsdl at the end of end point URL.</div>
+        <div>
+          <b>for example:</b>
+        </div>
+        <div>
+          end &nbsp;point:http://localhost:8080/WS/HelloWorld<br /> WSDL url: http://localhost:8080/WS/HelloWorld?wsdl<br />
+          <h4 style="text-align: left;">12. What is wsimport?</h4>
+          wsimport is utility which generates java classes from WSDL. It is part of JDK 6.<br />
+          <h4 style="text-align: left;">13.What is sun-jaxws.xml file?&nbsp;</h4>
+          This file provides endpoint details about JAX-WS web service which is deployed on tomcat.It is available at
+          WEB-INF directory.<br /> <b>For example: </b><br />
+          <pre class="xml" name="code">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0"&gt;
+&nbsp; &lt;endpoint
+&nbsp;&nbsp;&nbsp;&nbsp; name="HelloWorldWS"
+&nbsp;&nbsp;&nbsp;&nbsp; implementation="org.arpit.javapostsforlearning.webservice.HelloWorldImpl"
+&nbsp;&nbsp;&nbsp;&nbsp; url-pattern="/HelloWorldWS"/&gt;
+&lt;/endpoints&gt;&nbsp;</pre>
+          <h4 style="text-align: left;">14. What are Restful web services?</h4>
+          In the web services terms, REpresentational State Transfer (REST) is a stateless client-server architecture in
+          which the web services are viewed as resources and can be identified by their URIs. Web services client uses
+          that URI to access the resource.<br />
+          <h4 style="text-align: left;">15.What are HTTP methods that can be used with Restful web services?</h4>
+          Mainly used HTTP methods are GET, POST, PUT ,DELETE, HEAD and OPTIONS<br />
+          <h4 style="text-align: left;">16. What is JAX-RS?</h4>
+          Java API for RESTful Web Services (<b>JAX-RS</b>), is a set if APIs to develop REST service. JAX-RS is part of
+          the Java EE6, and make developers to develop REST web application easily.<br />
+          <div>
+            <h4 style="text-align: left;">17. What are some important annotations which you use to create Restful
+              web services?</h4>
+          </div>
+          <div>Some of important annotations which are used for creating web services are:</div>
+          <b>@Path :</b>&nbsp;This is used to set path for URI at class level or method level<br /> <b>@GET,@POST,@PUT,@DELETE
+            &nbsp;: </b>There are annotations corresponds to HTTP methods<br /> <b>@Produces(MediaType.TEXT_XML [,
+            more-types ])</b>: @Produces defines which MIME type is delivered by a method<br /> <b>@PathParam:</b>&nbsp;Used
+          to inject values from the URL into a method parameter.<br /> <b>@Consumes</b>(<b>MediaType.TEXT_XML</b>) :
+          @Cosumes defines which MIME type will be consumed by the method .<br />
+          <h4 style="text-align: left;">18. &nbsp;What are ways to test SOAP web services?</h4>
+          <b>For testing SOAP :</b><br /> SOAPUI<br /> <b>For testing Restful web services:</b><br />
+          <ul style="text-align: left;">
+            <li>Postman for chrome browser</li>
+            <li>poster for firefox</li>
+          </ul>
+          <h4 style="text-align: left;">19. How to choose between REST and SOAP web services?</h4>
+          <ul style="text-align: left;">
+            <li>If you want to implement web services in less time, go with REST</li>
+            <li>If you know your client beforehand , then you can choose SOAP. If you are not aware about clients
+              then go with REST.</li>
+            <li>If you want to work with different format other than XML, go with REST. SOAP only supports XML
+              format.</li>
+          </ul>
+          <div>
+
+
+            <div style="width: 968px">
+              <img src="./images/Capture.PNG" width="968" height="669" sizes="(max-width: 968px) 100vw, 968px">
+              <p>SOAP vs REST</p>
+            </div>
+
+
+            <div>
+              <h1>SOAP web service tutorial</h1>
+              <div>
+
+                <div>
+                  <div dir="ltr" style="text-align: left;" trbidi="on">
+                    <div style="text-align: left;">In this post, we will see introduction to SOAP web services.</div>
+                    <h2 style="text-align: left;">Web service Tutorial Content:</h2>
+                    <br /> Simple Object Access Protocol (SOAP) is a standard protocol specification for message
+                    exchange based on XML. Communication between the web service and client happens using XML messages.<br />
+                    <!-- adsense -->
+                    A simple web service architecture have two components<br />
+                    <ul style="text-align: left;">
+                      <li>Client</li>
+                      <li>Service provider</li>
+                    </ul>
+                    <div style="clear: both; text-align: left;">
+                      <img alt="SOAP web service tutorial" border="0" src="./images/SOAPWordPlane.jpg" title="" />
+                    </div>
+                    <br />
+                    <ul style="text-align: left;">
+                    </ul>
+                    So as in above diagram,how client will communicate to service provider. So in order to communicate
+                    client must know some information for e.g.<br />
+                    <ul style="text-align: left;">
+                      <li>Location of webservices server</li>
+                      <li>Functions available, signature and return types of function.</li>
+                      <li>Communication protocol</li>
+                      <li>Input output formats</li>
+                    </ul>
+                    Service provider will create a standard XML file which will have all above information.So If this
+                    file is given to client then client will be able to access web service. This XML file is called
+                    WSDL.<br />
+                    <h4 style="text-align: left;">What is WSDL?</h4>
+                    WSDL stands for Web Service Description Language. It is an XML file that describes<br /> the
+                    technical details of how to implement a web service, more specifically the URI,<br /> port, method
+                    names, arguments, and data types. Since WSDL is XML, it is both<br /> human-readable and
+                    machine-consumable, which aids in the ability to call and bind to<br /> services dynamically.using
+                    this WSDL file we can understand things like,<br />
+                    <ul style="text-align: left;">
+                      <li>&nbsp;&nbsp;&nbsp; Port / Endpoint &#8211; URL of the web service</li>
+                      <li>&nbsp;&nbsp;&nbsp; Input message format</li>
+                      <li>&nbsp;&nbsp;&nbsp; Output message format</li>
+                      <li>&nbsp;&nbsp;&nbsp; Security protocol that needs to be followed</li>
+                      <li>&nbsp;&nbsp;&nbsp; Which protocol the web service uses</li>
+                    </ul>
+                    <h4 style="text-align: left;">Ways to access web service:</h4>
+                    <div style="text-align: left;">There are two ways to access web service.</div>
+                    <ul style="text-align: left;">
+                      <li><b>If Service provider knows client</b>:If service provider knows its client then it will
+                        provide its wsdl to client and client will be able to access web service.</li>
+                    </ul>
+                    <div style="clear: both; text-align: left;">
+                      <img alt="SOAP web services direct communication" border="0" src="./images/SOAPWordOneLevel.jpg"
+                        title="" />
+                    </div>
+                    <br />
+                    <ul style="text-align: left;">
+                      <li><b>Service provider register its WSDL to UDDI and client can access it from UDDI</b>:UDDI
+                        stands for Universal Description, Discovery and Integration.It is a directory service. Web
+                        services can register with a UDDI and make themselves available through it for discovery.So
+                        following steps are involved.</li>
+                      <ul>
+                      </ul>
+                      <ol>
+                        <li>Service provider registers with UDDI.</li>
+                        <li>Client searches for service in UDDI.</li>
+                        <li>UDDI returns all service providers offering that service.</li>
+                        <li>Client chooses service provider</li>
+                        <li>UDDI returns WSDL of chosen service provider.</li>
+                        <li>Using WSDL of service provider,client accesses web service.</li>
+                      </ol>
+                      <ul>
+                      </ul>
+                    </ul>
+
+                    <div style="clear: both; text-align: left;">
+                        <img alt="SOAP web services indirect communication using UDDI" border="0"
+                          src="./images/SOAPWordUDDIDiagram.jpg"
+                          title="" />
+                    </div>
