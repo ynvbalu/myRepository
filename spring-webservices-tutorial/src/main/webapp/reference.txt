@@ -1,1 +1,3 @@
 http://www.java2blog.com/2013/03/soap-web-service-tutorial.html
+
+http://www.java2blog.com/2013/03/soap-web-service-example-in-java-using.html
