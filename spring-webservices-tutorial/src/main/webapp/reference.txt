@@ -1,3 +1,6 @@
 http://www.java2blog.com/2013/03/soap-web-service-tutorial.html
 
 http://www.java2blog.com/2013/03/soap-web-service-example-in-java-using.html
+
+check
+http://www.concretepage.com/spring-4/spring-4-soap-web-service-producer-consumer-example-with-tomcat
