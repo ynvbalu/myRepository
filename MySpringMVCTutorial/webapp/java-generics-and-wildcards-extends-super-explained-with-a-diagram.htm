@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Java Generics in no time "? extends" & "? super" explained with a diagram</title>
+</head>
+<body>
+  <p>Generics in Java can be be a bit tricky to get your head around. Hope the explanation below enhances your
+    understanding of generics.</p>
+
+  <p>
+    <b>The plain old List:</b> is a <u>heterogeneous mixture</u> or a mixed bag that contains elements of all types, for
+    example Integer, String, Pet, Dog, etc.
+  </p>
+  <p>
+    <strong>The List&lt;Object&gt;:</strong> is also a <u>heterogeneous mixture</u> like the plain old List, but not the
+    same and can be more restrictive than a plain old List. It is incorrect to think of this as the super type for a
+    collection of any object types.
+  </p>
+  <p>
+    <strong>The List&lt;?&gt;:</strong> is a <u>homogenous collection</u> that represents a family of generic
+    instantiations of List like List&lt;String&gt;, List&lt;Integer&gt;, List&lt;Pet&gt;, List&lt;Dog&gt;, etc.
+  </p>
+  <p>
+    List&lt;?&gt; is the <strong>super type</strong> for all generic collection as Object[ ] is the super type for all
+    arrays.
+  </p>
+  <h3>What can I assign to? What can I add to the Collection?</h3>
+  <p>When working with Collection &#038; Generics, you need to ask 4 important questions.</p>
+  <p>
+    <strong>1)</strong> Can the RHS be assigned to the LHS?<br /> <strong>2)</strong> What types of objects can I add
+    to the collection?<br /> <strong>3)</strong> Is it a read only or read &#038; write collection?<br /> <strong>4)</strong>
+    When to use which wild card (&#8220;? extends&#8221;, &#8220;? super&#8221;) ?
+  </p>
+  <p>If you do the wrong thing, you will get &#8220;compile-time&#8221; errors. Also, note that you can&#8217;t use
+    wildcards on the RHS when assigning and Java 8 supports empty &#8220;&lt;&gt;&#8221; on the RHS.</p>
+  <h3>Understanding Generics and assign-abilities</h3>
+  <img src="./images/java-generics-super-types1.jpg" width="1294" height="603" />
+  <p>
+    <strong>Note:</strong> &#8220;<strong>?</strong>&#8221; is a wild card meaning <u>anything</u>. &#8220;? extends
+    Pet&#8221; means &#8220;<strong>anything </strong>that extends a Pet&#8221;.
+  </p>
+  <p>Now let&#8217;s see a code example based on the above diagram. Click on the diagram to expand.</p>
+  <p></p>
+
+  <p></p>
+  <h3>5 Compile Errors marked in the above code reasoning</h3>
+  <p>
+    <b>#1.</b> List&lt;Pet&gt; is NOT the super type of List&lt;Dog&gt;. If it were the case, then you could add pets of
+    any type including Cats, and it defeats the purpose of Generics. <strong>List&lt;?&gt;</strong> is the super type of<strong>
+      List&lt;Pet&gt;</strong>. But read only. Can&#8217;t add any objects.
+  </p>
+  <p>
+    <b>#2.</b> Same as <strong>#1</strong>. If were not illegal, you could add a Cat to a Dog collection. Defeating the
+    purpose of Generics.
+  </p>
+  <p>
+    <b>#3.</b> List&lt;? extends Dog&gt; means assignable from any objects that are of type <strong>Dog </strong>or <strong>subclasses</strong>
+    of Dog. Pet is a <strong>superclass </strong>of Dog.
+  </p>
+  <p>
+    <b>#4.</b> You can only add objects of type <strong>Dog </strong>or <strong>subclasses</strong> of Dog. Subclasses
+    are possible because of <strong>polymorphism </strong>, where a parent type reference can hold its subclass object
+    type. So, you can add objects of type Dog or its subclasses like SpanielDog, but NOT its super classes.
+  </p>
+  <p>
+    <b>#5.</b> List&lt;? super Dog&gt; means assignable from any objects that are of type <strong>Dog </strong>or <strong>superclasses
+    </strong>of type Dog. Pet, Object, etc are valid superclasses. But SpanielDog is a subclass.
+  </p>
+  <h3>So, how to decide when to use a wild card, and when not to?</h3>
+  <p>
+    <strong>1.</strong> Use the ? extends wildcard if you need to retrieve object from a data structure. That is <strong>read
+      only</strong>. You can't add elements to the collection.
+  </p>
+  <p>
+    <strong>2.</strong> Use the ? super wildcard if you need to add objects to a data structure.
+  </p>
+  <p>
+    <strong>3.</strong> If you need to do both things (i.e. read and add objects), don't use any wildcard.
+  </p>
+  <h3>More code examples to validate your understanding</h3>
+  <p> examples are there in code</p>
+
+</body>
+</html>
