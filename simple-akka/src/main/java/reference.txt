@@ -1,0 +1,37 @@
+http://java-success.com/01-simple-akka-tutorial-java-step-step/
+
+
+c:\projects> mvn archetype:generate -DgroupId=com.mytutorial -DartifactId=simple-akka -B
+
+
+Let’s write a very simple Akka example where a “Producer” creates numbers from 1 to 10, and a “Consumer”, receives these numbers and just print them. 
+The “Producer” and “Consumer” are asynchronous.
+
+
+Some points to remember:
+
+1) What is an ActorSystem in Akka? As per the ActorSystem API, it extends “ActorRefFactory“, and it is a hierarchical 
+group of actors which share common configuration like dispatchers, deployments, remote capabilities and addresses. 
+It is also the entry point for creating or looking up actors .
+
+2) What is an ActorRef in Akka? As per the ActorRef API, it is an immutable and serializable handle to an actor. 
+So, it is thread-safe and fully shareable. “Consumer.java” is an actor in out example.
+
+3) What is a Props class? It is a configuration object used for creating an Actor. it is immutable, 
+hence thread-safe and fully shareable.
+
+4) What is an UntypedActor? As per the API, this class is the Java cousin to the Actor Scala interface. In other words, 
+UntypedActor is simply the name for Actor but as the Java API. Subclass this abstract class to create a MDB-style untyped actor.
+
+5) What is an Actor in Akka? Akka is based on the Actor Model, which is a higher level of abstraction for 
+writing concurrent and distributed systems. It alleviates the developer from having to deal with explicit locking 
+and thread management, making it easier to write correct concurrent and parallel systems.
+
+6) What is a tell method in Akka? tell means “fire-and-forget”, e.g. send a message asynchronously and return immediately. 
+The “tell” method was invoked on the ActorRef “printNumbersConsumer”.
+
+7) “system.shutdown();” shuts down the Akka actor system.
+
+8) In Java, if you are not inside an actor or do not want to pass the sender, use ActorRef.noSender() instead.
+
+9) Akka can not only do inter thread processing as shown above, but also can do inter process or inter JVM with akka remoting.
