@@ -45,30 +45,43 @@
 
         <a href="hashmap-and-how-it-works.html">How HashMap works</a>
         <br> <br>
-        
+
         <a href="finding-the-missing-numbers-java-example.html">Finding the missing number</a>
         <br> <br>
-        
+
         <a href="introduction-to-spring-boot.html">Introduction to Spring Boot</a>
         <br> <br>
-        
-        <a href="jee-overview-interview-questions-and-answers.html">8 Java EE (aka JEE) Overview interview questions & answers</a>
+
+        <a href="jee-overview-interview-questions-and-answers.html">8 Java EE (aka JEE) Overview interview questions
+          & answers</a>
         <br> <br>
       </h6>
   </div>
-  <div align="left"><u>Java Developer Training on 16 Tech Key Areas</u></div>
+  <div align="left">
+    <u>Java Developer Training on 16 Tech Key Areas</u>
+  </div>
   <br>
-  <img src="./images/16-Key-Areas.jpg" alt="16-Key-Areas" width="978" height="364"  />
+  <img src="./images/16-Key-Areas.jpg" alt="16-Key-Areas" width="978" height="364" />
   <br>
   <div style="width: 1200px">
-    <img src="./images/architectures.png" alt="Java application architectures & integration styles" width="1205" height="700"
-      sizes="(max-width: 1205px) 100vw, 1205px">
+    <img src="./images/architectures.png" alt="Java application architectures & integration styles" width="1205"
+      height="700" sizes="(max-width: 1205px) 100vw, 1205px">
     <p align="center">Java application architectures & integration styles</p>
   </div>
-  
-  <div align="left"><u>Better ways to explain design patterns?</u></div>
+
+  <div align="left">
+    <u>Better ways to explain design patterns?</u>
+  </div>
   <br>
-  <img src="./images/io-inheritance-vs-composition.jpg" alt="16-Key-Areas" width="887" height="572"  />
+  <img src="./images/io-inheritance-vs-composition.jpg" alt="16-Key-Areas" width="887" height="572" />
   <br>
+
+  <a href="java-generics-and-wildcards-extends-super-explained-with-a-diagram.htm">Java Generics in no time "?
+    extends" & "? super" explained with a diagram</a>
+<br>
+  <a href="uuid-aka-guid-in-java.htm">Generating a UUID (aka GUID) in Java</a>
+
 </body>
-</html><a href="java-generics-and-wildcards-extends-super-explained-with-a-diagram.htm">Java Generics in no time "? extends" & "? super" explained with a diagram</a>
+</html>
+
+

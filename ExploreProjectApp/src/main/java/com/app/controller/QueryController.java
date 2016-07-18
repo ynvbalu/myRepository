@@ -1,24 +1,23 @@
 package com.app.controller;
 
-import static com.app.constants.Constants.*;
+import static com.app.constants.Constants.LOG;
+import static com.app.constants.Constants.LOG_LOC_1;
 import static org.apache.commons.lang3.StringUtils.contains;
 import static org.apache.commons.lang3.StringUtils.join;
 
-import java.io.*;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.*;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.constants.UuidGenerator;
 import com.app.excel.ExcelBuilder;
 import com.app.pdf.PDFBuilder;
 import com.app.service.QueryService;
@@ -26,6 +25,7 @@ import com.app.service.QueryService;
 @Controller
 public class QueryController {
 
+  @SuppressWarnings("unused")
   private DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
   @Inject
@@ -188,6 +188,7 @@ public class QueryController {
     return finalOutput;
   }
 
+  @SuppressWarnings("unchecked")
   @RequestMapping(value = "/downloadExcel/{name}", method = RequestMethod.GET)
   public ModelAndView downloadExcel(@PathVariable String name, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
@@ -205,11 +206,13 @@ public class QueryController {
     }
     // return a view which will be resolved by an excel view resolver
     response.setContentType("application/ms-excel");
-    String fileName = "queries_" + df.format(new Date()) + ".xls";
+    //String fileName = "queries_" + df.format(new Date()) + ".xls";
+    String fileName = UuidGenerator.fromHostAndCurrentTime().toString()+ ".xls";
     response.setHeader("Content-disposition", "attachment; filename=" + fileName);
     return new ModelAndView(new ExcelBuilder(), "listOfQueries", listOfQueries);
   }
 
+  @SuppressWarnings("unchecked")
   @RequestMapping(value = "/downloadPDF/{name}", method = RequestMethod.GET)
   public ModelAndView downloadPDF(@PathVariable String name, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
@@ -227,7 +230,8 @@ public class QueryController {
     }
     // return a view which will be resolved by an excel view resolver
     response.setContentType("application/pdf");
-    String fileName = "queries_" + df.format(new Date()) + ".pdf";
+    //String fileName = "queries_" + df.format(new Date()) + ".pdf";
+    String fileName = UuidGenerator.fromHostAndCurrentTime().toString()+ ".pdf";
 
     response.setHeader("Content-disposition", "attachment; filename=" + fileName);
     return new ModelAndView(new PDFBuilder(), "listOfQueries", listOfQueries);

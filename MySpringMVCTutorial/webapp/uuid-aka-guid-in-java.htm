@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Generating a UUID (aka GUID) in Java</title>
+</head>
+<body>
+  <p>
+    UUID stands for Universally Unique ID. A UUID is known in the Microsoft world as as a <b>GUID</b>.
+  </p>
+  <h5>What does a UUID look like?</h5>
+  <p>The UUID is not a string, but a 128-bit value. The UUID is a hexadecimal value like</p>
+  <p>4536ca53-bcad-4552-977f-16945fee13e1</p>
+
+  <p></p>
+  <h5>How to generate a UUID in Java?</h5>
+  <p>The &#8220;java.util.UUID&#8221; class that represents an immutable universally unique identifier (UUID).</p>
+
+
+  <textarea rows="10" cols="110" wrap="soft">
+    import java.util.UUID;
+    import javax.inject.Named;
+    import org.springframework.transaction.annotation.Transactional;
+     
+    import com.myapp.UniqueIdentifierGeneratorService;
+     
+    @Named
+    @Transactional
+    public class UniqueIdentifierGeneratorServiceImpl implements UniqueIdentifierGeneratorService {
+       
+        @Override
+        public String generateUid() {
+            final String uuidString = UUID.randomUUID().toString();
+            LOG.debug("Generated UUID: {}", uuidString);
+            return uuidString;
+        }
+    }
+  </textarea>
+  <p></p>
+  <h5>What are the practical use cases for UUID?</h5>
+  <ol>
+    <li>As a row identity in a database table. i.e. as a primary key. The benefit is that it will be unique across
+      every table, every database, and every server. You can generate IDs anywhere. The disadvantage is that it is 4
+      times larger than the traditional 4-byte index value. UUIDs may not index well and could degrade database
+      performance.</li>
+    <li>UUID is a natural fit for many development scenarios where you need to generate primary keys outside the
+      database.</li>
+    <li>Many data replication scenarios require UUID columns. Another option is to let the database generate a <b>sequence
+        key</b> for internal relationships, and use a UUID as a unique secondary key.
+    </li>
+    <li>It can be used as an <b>audit tracking id</b> in web service calls.
+    </li>
+    <li>It can also be used as a <b>message correlation id</b>.
+    </li>
+    <li>Temporary file names.</li>
+    <li>Transaction IDs.</li>
+    <li>Unique identifiers for website users/visitors.</li>
+  </ol>
+  <h5>Generating UUID in Java based on host name &#038; timestamp</h5>
+  <p></p>
+  
+  
+  <textarea rows="10" cols="110" wrap="soft">
+      import java.net.InetAddress;
+      import java.net.UnknownHostException;
+      import java.util.UUID;
+       
+      public final class UuidGenerator {
+          
+          private static String HOST_IP;
+          
+          static {
+              try {
+                  HOST_IP = InetAddress.getLocalHost().getHostAddress();
+              } catch (UnknownHostException e) {
+                  HOST_IP = "127.0.0.1"; //localhost
+              }
+          }
+          
+          // can't instantiate from outside
+          private UuidGenerator() {}
+       
+          /**
+           * Generates a {@link UUID} from the current Host IP Address and Epoch Time.
+           * @return the generated {@link UUID}.
+           */
+          public static UUID fromHostAndCurrentTime() {
+              String currentTime = Long.toString(System.currentTimeMillis());
+              byte[] genBytes = (HOST_IP + currentTime).getBytes();
+              return UUID.nameUUIDFromBytes(genBytes);
+          }
+      }
+  </textarea>
+  
+  <p> You can use it as UuidGenerator.fromHostAndCurrentTime().toString(); </p>
+</body>
+</html>
