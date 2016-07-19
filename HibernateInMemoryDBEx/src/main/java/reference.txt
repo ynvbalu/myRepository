@@ -1,0 +1,3 @@
+http://howtodoinjava.com/hibernate/hibernate-4-using-in-memory-database-with-hibernate/
+
+mvn archetype:generate -DgroupId=com.naga -DartifactId=HibernateInMemoryDBEx -B
