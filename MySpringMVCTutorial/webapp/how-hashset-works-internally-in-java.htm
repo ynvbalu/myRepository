@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>How HashSet Works Internally In Java?</title>
+</head>
+<body>
+  <h2>How HashSet Works Internally In Java?</h2>
+
+  <hr />
+  <p>
+    <strong>HashSet</strong> uses HashMap internally to store it&#8217;s objects. Whenever you create a HashSet object,
+    one <strong>HashMap</strong> object associated with it is also created. This HashMap object is used to store the
+    elements you enter in the HashSet. The elements you add into HashSet are stored as <strong>keys</strong> of this
+    HashMap object. The value associated with those keys will be a <strong>constant</strong>.
+  </p>
+
+  <p>Every constructor of HashSet class internally creates one HashMap object. You can check this in the source code
+    of HashSet class in JDK installation directory. Below is the some sample code of the constructors of HashSet class.</p>
+  <pre class="brush: java; title: ; notranslate" title="">
+    private transient HashMap&lt;E,Object&gt; map;
+    
+    //Constructor - 1
+    
+    public HashSet()
+    {
+            map = new HashMap&lt;&gt;();          //Creating internally backing HashMap object
+    }
+    
+    //Constructor - 2
+    
+    public HashSet(Collection&lt;? extends E&gt; c)
+    {
+            map = new HashMap&lt;&gt;(Math.max((int) (c.size()/.75f) + 1, 16));     //Creating internally backing HashMap object
+            addAll(c);
+    }
+    
+    //Constructor - 3
+    
+    public HashSet(int initialCapacity, float loadFactor)
+    {
+            map = new HashMap&lt;&gt;(initialCapacity, loadFactor);        //Creating internally backing HashMap object
+    }
+    
+    //Constructor - 4
+    
+    public HashSet(int initialCapacity)
+    {
+            map = new HashMap&lt;&gt;(initialCapacity);          //Creating internally backing HashMap object
+    }
+    </pre>
+  <p>You can notice that each and every constructor internally creates one new HashMap object.</p>
+  <h2>How HashSet Works Internally In Java?</h2>
+  <p>
+    Whenever you insert an element into HashSet using <strong>add()</strong> method, it actually creates an entry in the
+    internally backing HashMap object with element you have specified as it&#8217;s key and constant called &#8220;<strong>PRESENT</strong>&#8221;
+    as it&#8217;s value. This &#8220;PRESENT&#8221; is defined in the HashSet class as below.
+  </p>
+
+  <pre class="brush: java; title: ; notranslate" title="">
+    // Dummy value to associate with an Object in the backing Map
+    private static final Object PRESENT = new Object();
+    </pre>
+  <p>Let&#8217;s have a look at add() method of HashSet class.</p>
+  <pre class="brush: java; title: ; notranslate" title="">
+    public boolean add(E e)
+    {
+            return map.put(e, PRESENT)==null;
+    }
+    </pre>
+      <p>You can notice that, add() method of HashSet class internally calls put() method of backing HashMap object by
+    passing the element you have specified as a key and constant &#8220;PRESENT&#8221; as it&#8217;s value.</p>
+  <p>
+    <strong>remove()</strong> method also works in the same manner.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+  public boolean remove(Object o)
+  {
+          return map.remove(o)==PRESENT;
+  }
+  </pre>
+  <p>Let&#8217;s see one example of HashSet and how it maintains HashMap internally.</p>
+  <pre class="brush: java; title: ; notranslate" title="">
+  public class HashSetExample
+  {
+    public static void main(String[] args)
+    {
+      //Creating One HashSet object
+  
+      HashSet&lt;String&gt; set = new HashSet&lt;String&gt;();
+  
+      //Adding elements to HashSet
+  
+      set.add(&quot;RED&quot;);
+  
+      set.add(&quot;GREEN&quot;);
+  
+      set.add(&quot;BLUE&quot;);
+  
+      set.add(&quot;PINK&quot;);
+  
+      //Removing &quot;RED&quot; from HashSet
+  
+      set.remove(&quot;RED&quot;);
+    }
+  }
+  </pre>
+  <p>See the below picture how above program works internally. You can observe that internal HashMap object contains
+    elements of HashSet as keys and constant &#8220;PRESENT&#8221; as their value.</p>
+  
+  <img src="./images/HowHashSetWorks.png" width="741" height="645" align="middle">
+
+  <p>In the same manner, all methods of HashSet class process internally backing HashMap object to get the desired
+    result. If you know how HashMap works, it will be easy for you to understand how HashSet works. You go through the
+    source code of HashSet class once, you will get a clear picture about how HashSet works internally in Java.</p>
+  <hr />
+
+</body>
+</html>

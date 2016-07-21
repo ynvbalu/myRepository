@@ -86,6 +86,9 @@
   
   <br>
   <a href="how-to-convert-hashmap-to-arraylist-in-java.htm">How To Convert HashMap To ArrayList In Java?</a>
+  
+  <br>
+  <a href="how-hashset-works-internally-in-java.htm">How HashSet Works Internally In Java?</a>
 
 </body>
 </html>
