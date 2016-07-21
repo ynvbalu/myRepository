@@ -83,6 +83,9 @@
   
   <br>
   <a href="how-hashmap-works-internally-in-java.htm">How HashMap Works Internally In Java?</a>
+  
+  <br>
+  <a href="how-to-convert-hashmap-to-arraylist-in-java.htm">How To Convert HashMap To ArrayList In Java?</a>
 
 </body>
 </html>

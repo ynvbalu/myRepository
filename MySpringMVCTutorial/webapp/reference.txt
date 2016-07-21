@@ -1,3 +1,9 @@
+TODO:
+
+http://javaconceptoftheday.com/how-hashset-works-internally-in-java/
+
+DONE
+http://javaconceptoftheday.com/how-to-convert-hashmap-to-arraylist-in-java/
 http://javaconceptoftheday.com/how-hashmap-works-internally-in-java/
 
 

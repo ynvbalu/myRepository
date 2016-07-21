@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>How To Convert HashMap To ArrayList In Java?</title>
+</head>
+<body>
+  <h2>How To Convert HashMap To ArrayList In Java?</h2>
+
+  <hr />
+  <p>
+    <em>HashMap</em> and <em>ArrayList</em> are two most used data structures in java. Both classes inherit from
+    different hierarchies. <em>HashMap</em> is inherited from <em>Map</em> interface which represents the data in the
+    form of key-value pairs. <em>ArrayList</em> is inherited from <em>List</em> interface which arranges the data in the
+    sequential manner. Conversion of <em>HashMap</em> to <em>ArrayList</em> has also become a regular question in the
+    java interviews as there is no direct methods in <em>HashMap</em> which converts the <em>HashMap</em> to <em>ArrayList</em>.
+    In this post, we will see how to convert HashMap to ArrayList in java with examples.
+  </p>
+  <img src="./images/HashMapToArrayList.png" width="722" height="504" align="middle">
+
+  <h3>How To Convert HashMap To ArrayList In Java?</h3>
+  <p>
+    As <em>HashMap</em> contains key-value pairs, there are three ways you can convert given <em>HashMap</em> to <em>ArrayList</em>.
+    You can convert <em>HashMap</em> keys into <em>ArrayList</em> or you can convert <em>HashMap</em> values into <em>ArrayList</em>
+    or you can convert key-value pairs into <em>ArrayList</em>. Let&#8217;s see these three methods in detail.
+  </p>
+  <p>
+    <strong>a) Conversion Of HashMap Keys Into ArrayList :</strong>
+  </p>
+  <p>
+    For this, we use <em>keySet()</em> method of <em>HashMap</em> which returns the <em>Set</em> containing all keys of
+    the <em>HashMap</em>. And then we pass this <em>Set</em> while constructing the <em>ArrayList</em>.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+      //Creating a HashMap object
+          
+      HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+      
+      //Getting Set of keys from HashMap
+          
+      Set&lt;String&gt; keySet = map.keySet();
+          
+      //Creating an ArrayList of keys by passing the keySet
+          
+      ArrayList&lt;String&gt; listOfKeys = new ArrayList&lt;String&gt;(keySet);
+  </pre>
+  <p>
+    <strong>b) Conversion Of HashMap Values Into ArrayList :</strong>
+  </p>
+  <p>
+    For this, we use <em>values()</em> method of <em>HashMap</em> which returns the <em>Collection</em> containing all
+    values of the <em>HashMap</em>. Then we use this <em>Collection</em> to create the <em>ArrayList </em>of values.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+    //Creating a HashMap object
+        
+    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+    
+    //Getting Collection of values from HashMap
+        
+    Collection&lt;String&gt; values = map.values();
+        
+    //Creating an ArrayList of values
+        
+    ArrayList&lt;String&gt; listOfValues = new ArrayList&lt;String&gt;(values);
+    </pre>
+  <p>
+    <strong>c) Conversion Of HashMap&#8217;s Key-Value Pairs Into ArrayList :</strong>
+  </p>
+  <p>
+    For this, we use <em>entrySet()</em> method of <em>HashMap</em> which returns the <em>Set</em> of <em>Entry&lt;K,
+      V&gt;</em> objects where each <em>Entry</em> object represents one key-value pair. We pass this <em>Set</em> to create
+    the <em>ArrayList</em> of key-value pairs.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+    //Creating a HashMap object
+        
+    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+    
+    //Getting the Set of entries
+        
+    Set&lt;Entry&lt;String, String&gt;&gt; entrySet = map.entrySet();
+        
+    //Creating an ArrayList Of Entry objects
+        
+    ArrayList&lt;Entry&lt;String, String&gt;&gt; listOfEntry = new ArrayList&lt;Entry&lt;String,String&gt;&gt;(entrySet);
+    </pre>
+</body>
+</html>
