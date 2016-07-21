@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>How HashMap Works Internally In Java?</title>
+</head>
+<body>
+  <h2>How HashMap Works Internally In Java?</h2>
+
+  <hr />
+  <p>If the data is the most important part of an application, then data structure chosen to handle that data is
+    even more important. Because, data structure arranges the data so that insertion of new elements or searching of old
+    elements will be faster. Java provides wide range of data structures to handle the data. You can choose array, list,
+    queue, set or map. Each of these are used in different scenarios. It is up to you to select which one is better for
+    your application.</p>
+
+
+  <p>
+    If your application demands faster insertion and faster retrieval then <em>HashMap</em> is the ultimate choice.
+    While selecting the data structure, you must keep two things in your mind. First one is that the data structure must
+    give better performance while inserting the new elements and second one is that it should give even more better
+    performance while searching for an element. Because insertion and retrieval are two operations which you perform
+    very frequently in your applications. These things will matter even more when you are handling the big data. <em>HashMap</em>
+    is the most sought after data structure when you are handling the big data with more preference to insertion and
+    retrieval operations.
+  </p>
+  <p>
+    <em>HashMap</em> is the most used data structure in java because it gives almost constant time performance of O(1)
+    for put and get operations irrespective of how big is the data. As you already know, <em>HashMap</em> stores the
+    data in the form of key-value pairs. In this post, we will see how HashMap works internally in java and how it
+    stores the elements to give O(1) performance for put and get operations.
+  </p>
+  <h3>HashMap Internal Structure :</h3>
+  <p>
+    <em>HashMap</em> stores the data in the form of key-value pairs. Each key-value pair is stored in an object of <em>Entry&lt;K,
+      V&gt;</em> class. <em>Entry&lt;K, V&gt;</em> class is the static inner class of <em>HashMap</em> which is defined like
+    below.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+      static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; 
+      {
+              final K key;
+              V value;
+              Entry&lt;K,V&gt; next;
+              int hash;
+      
+              //Some methods are defined here
+      }
+      </pre>
+  <p>
+    As you see, this inner class has four fields. <em>key</em>, <em>value</em>, <em>next</em> and <em>hash</em>.
+  </p>
+  <p style="padding-left: 30px;">
+    <strong>key</strong> : It stores the key of an element and its final.
+  </p>
+  <p style="padding-left: 30px;">
+    <strong>value</strong> : It holds the value of an element.
+  </p>
+  <p style="padding-left: 30px;">
+    <strong>next</strong> : It holds the pointer to next key-value pair. <strong><em>This attribute makes
+        the key-value pairs stored as a linked list.</em></strong>
+  </p>
+  <p style="padding-left: 30px;">
+    <strong>hash</strong> : It holds the hashcode of the key.
+  </p>
+  <p>
+    These <em>Entry</em> objects are stored in an array called <em>table[]</em>. This array is initially of size 16. It
+    is defined like below.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+    /**
+     * The table, resized as necessary. Length MUST Always be a power of two.
+     */
+    transient Entry&lt;K,V&gt;[] table;
+</pre>
+  <p>
+    To summarize the whole <em>HashMap</em> structure, each key-value pair is stored in an object of <em>Entry&lt;K,
+      V&gt;</em> class. This class has an attribute called <em>next</em> which holds the pointer to next key-value pair. This
+    makes the key-value pairs stored as a linked list. All these <em>Entry&lt;K, V&gt;</em> objects are stored in an
+    array called <em>table[]</em>. The below image best describes the <em>HashMap</em> structure.
+  </p>
+
+  <div style="width: 651px">
+    <img src="./images/HashMapInternalStructure.png" width="651" height="754" align="middle">
+  </div>
+  <p>
+    The above image roughly shows how the <em>HashMap</em> stores its elements. Internally it uses an array of <em>Entry&lt;K,
+      V&gt;</em> class called <em>table[]</em> to store the key-value pairs. But how <em>HashMap</em> allocates slot in <em>table[]</em>
+    array to each of its key-value pair is very interesting. It doesn&#8217;t inserts the objects as you put them into <em>HashMap</em>
+    i.e first element at index 0, second element at index 1 and so on. Instead it uses the hashcode of the key to decide
+    the index for a particular key-value pair. It is called <strong><em>Hashing</em></strong>.
+  </p>
+  <h3>What Is Hashing?</h3>
+  <p>
+    The whole <em>HashMap</em> data structure is based on the principle of <strong>Hashing</strong>. Hashing is nothing
+    but the function or algorithm or method which when applied on any object/variable returns an unique integer value
+    representing that object/variable. This unique integer value is called <strong><em>hash code</em></strong>. Hash
+    function or simply hash said to be the best if it returns the same hash code each time it is called on the same
+    object. Two objects can have same hash code.
+  </p>
+  <p>
+    Whenever you insert new key-value pair using <em>put()</em> method, <em>HashMap</em> blindly doesn&#8217;t allocate
+    slot in the <em>table[]</em> array. Instead it calls hash function on the key. <em>HashMap</em> has its own hash
+    function to calculate the hash code of the key. This function is implemented so that it overcomes poorly implemented
+    <em>hashCode()</em> methods. Below is implementation code of <em>hash()</em>.
+  </p>
+
+  <pre class="brush: java; title: ; notranslate" title="">
+/**
+     * Retrieve object hash code and applies a supplemental hash function to the
+     * result hash, which defends against poor quality hash functions.  This is
+     * critical because HashMap uses power-of-two length hash tables, that
+     * otherwise encounter collisions for hashCodes that do not differ
+     * in lower bits. Note: Null keys always map to hash 0, thus index 0.
+     */
+    final int hash(Object k) {
+        int h = 0;
+        if (useAltHashing) {
+            if (k instanceof String) {
+                return sun.misc.Hashing.stringHash32((String) k);
+            }
+            h = hashSeed;
+        }
+
+        h ^= k.hashCode();
+
+        // This function ensures that hashCodes that differ only by
+        // constant multiples at each bit position have a bounded
+        // number of collisions (approximately 8 at default load factor).
+        h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
+        return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
+    }
+</pre>
+  <p>
+    After calculating the hash code of the key, it calls <em>indexFor()</em> method by passing the hash code of the key
+    and length of the <em>table[]</em> array. This method returns the index in the <em>table[]</em> array for that
+    particular key-value pair.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+/**
+     * Returns index for hash code h.
+     */
+    static int indexFor(int h, int length) {
+        return h &amp; (length-1);
+    }
+</pre>
+  <p>
+    Now, let&#8217;s see how <em>put()</em> method works in detail.
+  </p>
+  <h3>How put() method works?</h3>
+  <p>
+    Below is the code implementation of <em>put()</em> method in the <em>HashMap</em> class.
+  </p>
+  <pre class="brush: java; title: ; notranslate" title="">
+   /**
+     * Associates the specified value with the specified key in this map.
+     * If the map previously contained a mapping for the key, the old
+     * value is replaced.
+     *
+     * @param key key with which the specified value is to be associated
+     * @param value value to be associated with the specified key
+     * @return the previous value associated with &lt;tt&gt;key&lt;/tt&gt;, or
+     *         &lt;tt&gt;null&lt;/tt&gt; if there was no mapping for &lt;tt&gt;key&lt;/tt&gt;.
+     *         (A &lt;tt&gt;null&lt;/tt&gt; return can also indicate that the map
+     *         previously associated &lt;tt&gt;null&lt;/tt&gt; with &lt;tt&gt;key&lt;/tt&gt;.)
+     */
+    public V put(K key, V value) {
+        if (key == null)
+            return putForNullKey(value);
+        int hash = hash(key);
+        int i = indexFor(hash, table.length);
+        for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e.next) {
+            Object k;
+            if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) {
+                V oldValue = e.value;
+                e.value = value;
+                e.recordAccess(this);
+                return oldValue;
+            }
+        }
+
+        modCount++;
+        addEntry(hash, key, value, i);
+        return null;
+    }
+</pre>
+  <p>Let&#8217;s see how this code works step by step.</p>
+  <p>
+    Step 1 : First checks whether the key is null or not. If the key is null, it calls <em>putForNullKey()</em> method.
+    <em>table[0]</em> is always reserved for null key. Because, hash code of null is 0.
+  </p>
+  <p>
+    Step 2 : If the key is not null, then it calculates the hash code of the key by calling <em>hash()</em> method.
+  </p>
+  <p>
+    Step 3 : Calls <em>indexFor()</em> method by passing the hash code calculated in step 2 and length of the <em>table[]</em>
+    array. This method returns index in <em>table[]</em> array for the specified key-value pair.
+  </p>
+  <p>Step 4 : After getting the index, it checks all keys present in the linked list at that index ( or bucket). If
+    the key is already present in the linked list, it replaces the old value with new value.</p>
+  <p>Step 5 : If the key is not present in the linked list, it appends the specified key-value pair at the end of
+    the linked list.</p>
+
+  <div>
+    <img src="./images/HowPutMethodWorks.png" width="741" height="645" align="middle">
+  </div>
+  <div>
+    <img src="./images/FlowchartOfPutMethod.png" width="548" height="690" align="middle">
+  </div>
+
+  <h3>How get() method Works?</h3>
+  <p>Let&#8217;s see how get() method has implemented.</p>
+  <pre class="brush: java; title: ; notranslate" title="">
+      /**
+      * Returns the value to which the specified key is mapped, or {@code null}
+      * if this map contains no mapping for the key.
+      *
+      *
+      
+      * More formally, if this map contains a mapping from a key {@code k} to a
+      * value {@code v} such that {@code (key==null ? k==null :
+      * key.equals(k))}, then this method returns {@code v}; otherwise it returns
+      * {@code null}. (There can be at most one such mapping.)
+      *
+      * 
+      
+      * A return value of {@code null} does not &lt;i&gt;necessarily&lt;/i&gt; indicate that
+      * the map contains no mapping for the key; it's also possible that the map
+      * explicitly maps the key to {@code null}. The {@link #containsKey
+      * containsKey} operation may be used to distinguish these two cases.
+      *
+      * @see #put(Object, Object)
+      */
+      public V get(Object key) {
+          if (key == null)
+          return getForNullKey();
+          int hash = hash(key.hashCode());
+          for (Entry&lt;K , V&gt; e = table[indexFor(hash, table.length)]; e != null; e = e.next) {
+              Object k;
+              if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k)))
+                  return e.value;
+          }
+          return null;
+      }
+  </pre>
+  <p>
+    Step 1 : First checks whether specified key is null or not. If the key is null, it calls <em>getForNullKey()</em>
+    method.
+  </p>
+  <p>Step 2 : If the key is not null, hash code of the specified key is calculated.</p>
+  <p>
+    Step 3 : <em>indexFor()</em> method is used to find out the index of the specified key in the <em>table[]</em>
+    array.
+  </p>
+  <p>Step 4 : After getting index, it will iterate though linked list at that position and checks for the key using
+    equals() method. If the key is found, it returns the value associated with it. otherwise returns null.</p>
+  <hr />
+</body>
+</html>

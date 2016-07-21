@@ -80,6 +80,9 @@
     extends" & "? super" explained with a diagram</a>
 <br>
   <a href="uuid-aka-guid-in-java.htm">Generating a UUID (aka GUID) in Java</a>
+  
+  <br>
+  <a href="how-hashmap-works-internally-in-java.htm">How HashMap Works Internally In Java?</a>
 
 </body>
 </html>
